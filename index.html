@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Justine Pean Huyo-a</title>
+    <!-- Linked external CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body oncontextmenu="return false;">
+
+    <header><h1>Portfolio</h1></header>
+
+    <main>
+        <div class="gallery">
+            <div class="gallery-item" data-before="images/before1.jpg">
+                <img src="images/after1.jpg" alt="Work">
+                <div class="overlay"><span>View Comparison</span></div>
+            </div>
+            <div class="gallery-item" data-before="images/before2.jpg">
+                <img src="images/after2.jpg" alt="Work">
+                <div class="overlay"><span>View Comparison</span></div>
+            </div>
+            <div class="gallery-item" data-before="images/before3.jpg">
+                <img src="images/after3.jpg" alt="Work">
+                <div class="overlay"><span>View Comparison</span></div>
+            </div>
+            <div class="gallery-item" data-before="images/before4.jpg">
+                <img src="images/after4.jpg" alt="Work">
+                <div class="overlay"><span>View Comparison</span></div>
+            </div>
+        </div>
+    </main>
+
+    <footer><p>&copy; 2026 Justine Pean Huyo-a. All rights reserved.</p></footer>
+
+    <div id="modal" class="modal">
+        <button class="close-btn">&times;</button>
+        <div class="comparison-wrapper" id="wrapper">
+            <div class="label label-before">Raw</div>
+            <div class="label label-after">Edited</div>
+            <img src="" class="img-after" id="modal-after">
+            <img src="" class="img-before" id="modal-before">
+            <input type="range" min="0" max="100" value="50" class="slider-input" id="slider">
+            <div class="slider-line"></div>
+        </div>
+    </div>
+
+    <!-- Linked external JS -->
+    <script src="js/script.js"></script>
+</body>
+</html>
