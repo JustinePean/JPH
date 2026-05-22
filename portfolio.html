@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Justine Pean Huyo-a</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body oncontextmenu="return false;">
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">JPH</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="portfolio.html">Portfolio</a>
+                <a href="mailto:justinepeandh@gmail.com">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="portfolio-header">
+        <h1>Selected Works</h1>
+    </header>
+
+    <main class="gallery-container">
+        <div class="gallery">
+            <!-- Data-before holds the raw image path -->
+            <div class="gallery-item" data-before="images/before1.jpg">
+                <img src="images/after1.jpg" alt="Retouching Work 1">
+                <div class="overlay"><span>View Comparison</span></div>
+            </div>
+            <div class="gallery-item" data-before="images/before2.jpg">
+                <img src="images/after2.jpg" alt="Retouching Work 2">
+                <div class="overlay"><span>View Comparison</span></div>
+            </div>
+            <div class="gallery-item" data-before="images/before3.jpg">
+                <img src="images/after3.jpg" alt="Retouching Work 3">
+                <div class="overlay"><span>View Comparison</span></div>
+            </div>
+            <div class="gallery-item" data-before="images/before4.jpg">
+                <img src="images/after4.jpg" alt="Retouching Work 4">
+                <div class="overlay"><span>View Comparison</span></div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Justine Pean Huyo-a. All rights reserved.</p>
+    </footer>
+
+    <!-- Comparison Modal -->
+    <div id="modal" class="modal">
+        <button class="close-btn" aria-label="Close Modal">&times;</button>
+        <div class="comparison-wrapper" id="comparison-wrapper">
+            <div class="label label-before">Raw</div>
+            <div class="label label-after">Edited</div>
+            <img src="" class="img-after" id="modal-after" alt="Edited version">
+            <img src="" class="img-before" id="modal-before" alt="Raw version">
+            <input type="range" min="0" max="100" value="50" class="slider-input" id="slider">
+            <div class="slider-line"></div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
