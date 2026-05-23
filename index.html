@@ -10,6 +10,11 @@
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo">JPH</a>
+            <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <div class="nav-links">
                 <a href="portfolio.html">Portfolio</a>
                 <a href="mailto:justinepeandh@gmail.com">Contact</a>
@@ -42,6 +47,19 @@
     <footer class="footer">
         <p>&copy; 2026 Justine Pean Huyo-a. All rights reserved.</p>
     </footer>
+
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+                menuToggle.setAttribute('aria-expanded', String(!isExpanded));
+                navLinks.classList.toggle('is-open');
+            });
+        }
+    </script>
 
 </body>
 </html>
