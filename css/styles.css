@@ -209,7 +209,7 @@ a {
 .portfolio-header h1 { font-weight: 300; text-transform: uppercase; letter-spacing: 6px; font-size: 1.2rem; }
 
 .gallery {
-    column-count: 2;
+    column-count: 3;
     column-gap: 25px;
     padding: 0 5% 100px;
     max-width: 1400px;
@@ -217,15 +217,28 @@ a {
 }
 
 .gallery-item {
+    display: inline-block;
+    width: 100%;
     break-inside: avoid;
     margin-bottom: 25px;
     position: relative;
     cursor: pointer;
     overflow: hidden;
     background: var(--bg-alt);
+    border-radius: 18px;
+    aspect-ratio: 1 / 1;
 }
 
-.gallery-item img { width: 100%; display: block; transition: var(--transition); }
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 18px;
+    transition: var(--transition);
+}
+
 .gallery-item:hover img { transform: scale(1.05); }
 
 .gallery-item .overlay {
@@ -368,7 +381,7 @@ a {
     .hero-image { position: absolute; top: 70%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: 100%; z-index: 1; opacity: 0.4; pointer-events: none; }
     .image-wrapper { padding-bottom: 0; height: 100%; }
     .image-wrapper img { height: 60%; width: auto; left: 50%; transform: translateX(-50%) scale(1.05); }
-    .gallery { column-count: 1; }
+    .gallery { column-count: 2; }
 }
 
 @media (max-width: 768px) {
