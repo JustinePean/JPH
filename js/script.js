@@ -12,12 +12,39 @@ const imgAfter = document.getElementById('modal-after');
 const galleryItems = document.querySelectorAll('.gallery-item');
 const menuToggle = document.querySelector('.menu-toggle');
 const navLinks = document.querySelector('.nav-links');
+const navbar = document.querySelector('.navbar');
 
 if (menuToggle && navLinks) {
     menuToggle.addEventListener('click', () => {
         const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
         menuToggle.setAttribute('aria-expanded', String(!isExpanded));
         navLinks.classList.toggle('is-open');
+
+        if (navbar && navLinks.classList.contains('is-open')) {
+            navbar.classList.remove('is-hidden');
+        }
+    });
+}
+
+if (navbar) {
+    let lastScrollY = window.scrollY;
+
+    window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+
+        if (currentScrollY <= 0) {
+            navbar.classList.remove('is-hidden');
+            lastScrollY = currentScrollY;
+            return;
+        }
+
+        if (currentScrollY > lastScrollY && !navLinks?.classList.contains('is-open')) {
+            navbar.classList.add('is-hidden');
+        } else {
+            navbar.classList.remove('is-hidden');
+        }
+
+        lastScrollY = currentScrollY;
     });
 }
 
