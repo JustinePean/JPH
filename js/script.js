@@ -14,6 +14,9 @@ const menuToggle = document.querySelector('.menu-toggle');
 const navLinks = document.querySelector('.nav-links');
 const navbar = document.querySelector('.navbar');
 
+const heroImage = document.querySelector('.hero-image');
+const aboutSection = document.querySelector('.about-section');
+const aboutVisual = document.querySelector('.about-visual');
 if (menuToggle && navLinks) {
     menuToggle.addEventListener('click', () => {
         const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
@@ -94,3 +97,35 @@ window.addEventListener('click', (e) => {
 window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal.style.display === 'flex') closeModal();
 });
+
+// Intersection Observer for hero/about image animations
+if (aboutSection && heroImage && aboutVisual) {
+    const observerOptions = {
+        root: null, // viewport
+        rootMargin: '0px',
+        threshold: 0.3 // Trigger when 30% of the about section is visible
+    };
+
+    const aboutSectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            // Only apply animation on desktop/tablet (not mobile)
+            if (window.innerWidth > 768) {
+                if (entry.isIntersecting) {
+                    // About section is visible, make hero-image disappear, about-visual appear
+                    heroImage.classList.add('fade-out');
+                    aboutVisual.classList.add('fade-in');
+                } else {
+                    // About section is not visible, make hero-image appear, about-visual disappear
+                    heroImage.classList.remove('fade-out');
+                    aboutVisual.classList.remove('fade-in');
+                }
+            } else {
+                // On mobile, ensure classes are removed to respect mobile-specific CSS
+                heroImage.classList.remove('fade-out');
+                aboutVisual.classList.remove('fade-in');
+            }
+        });
+    }, observerOptions);
+
+    aboutSectionObserver.observe(aboutSection);
+}
