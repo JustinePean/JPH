@@ -43,49 +43,83 @@
         </div>
     </main>
 
+    <section class="about-section">
+        <div class="about-container">
+            <div class="about-visual">
+                <div class="image-wrapper about-image-wrapper">
+                    <img src="images/hero-portrait.png" alt="Justine Pean Huyo-a">
+                </div>
+            </div>
+            <div class="about-text">
+                <p class="subtitle">About me</p>
+                <h2>Photo Editor</h2>
+                <p>
+                    I’m Justine, a Cebu-based Real Estate Photo Editor with 3 years of experience transforming property photos into premium visual assets.
+                </p>
+                <p>
+                    Holding a degree/background in Information Technology, I blend a sharp eye for detail with strong technical problem-solving skills. My career began in fast-paced retail and food service environments, which shaped my strong work ethic and commitment to client satisfaction.
+                </p>
+                <p>
+                    I’m dedicated to delivering crisp, vibrant, and market-ready images that help you sell faster. Off the clock, I stay sharp and energized by lifting weights and staying active.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="services-container">
+            <h2 class="services-title">Services</h2>
+            <div class="services-cards">
+                <div class="service-card">
+                    <div class="service-icon service-icon-arch"></div>
+                    <h3 class="service-name">Architectural</h3>
+                    <p class="service-desc">Expert lens correction, color balancing, and perspective adjustments for property photos.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon service-icon-portrait"></div>
+                    <h3 class="service-name">Portrait</h3>
+                    <p class="service-desc">Skin retouching, blemish removal, color grading, and enhancing professional portraits.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon service-icon-staging"></div>
+                    <h3 class="service-name">Virtual Staging</h3>
+                    <p class="service-desc">Digital furniture placement, interior styling, and scene enhancements to showcase a property.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonial-section">
+        <div class="testimonial-container">
+            <div class="testimonial-client">
+                <div class="testimonial-img-wrapper">
+                    <img src="images/client1.jpg" alt="Client photo" class="testimonial-img">
+                </div>
+            </div>
+            <div class="testimonial-content">
+                <div class="testimonial-rating">
+                    <span class="testimonial-stars">★★★★★</span>
+                    <span class="testimonial-score">5.0</span>
+                </div>
+                <blockquote class="testimonial-quote">
+                    <p>"Justine did a fantastic job for me!</p>
+                    <p>I gave him some pictures in the fashion industry (Man Suits) which are a bit hard to do even if you shot it in a studio, as it is hard to get close to the natural colour but Justine did it!</p>
+                    <p>He was available whenever we needed to change or tweak something! The communication was amazing!</p>
+                    <p>I highly recommend Justine"</p>
+                </blockquote>
+                <div class="testimonial-meta">
+                    <span class="testimonial-badge">Clear Communicator</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer class="footer">
         <p>&copy; 2026 Justine Pean Huyo-a. All rights reserved.</p>
     </footer>
 
-    <script>
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-        const navbar = document.querySelector('.navbar');
-
-        if (menuToggle && navLinks) {
-            menuToggle.addEventListener('click', () => {
-                const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-                menuToggle.setAttribute('aria-expanded', String(!isExpanded));
-                navLinks.classList.toggle('is-open');
-
-                if (navbar && navLinks.classList.contains('is-open')) {
-                    navbar.classList.remove('is-hidden');
-                }
-            });
-        }
-
-        if (navbar) {
-            let lastScrollY = window.scrollY;
-
-            window.addEventListener('scroll', () => {
-                const currentScrollY = window.scrollY;
-
-                if (currentScrollY <= 0) {
-                    navbar.classList.remove('is-hidden');
-                    lastScrollY = currentScrollY;
-                    return;
-                }
-
-                if (currentScrollY > lastScrollY && !navLinks?.classList.contains('is-open')) {
-                    navbar.classList.add('is-hidden');
-                } else {
-                    navbar.classList.remove('is-hidden');
-                }
-
-                lastScrollY = currentScrollY;
-            });
-        }
-    </script>
+    <script src="js/script.js"></script>
 
 </body>
 </html>
