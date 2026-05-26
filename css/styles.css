@@ -301,7 +301,6 @@ a {
 .hero-image,
 .about-visual {
     transition: opacity 0.8s ease-in;
-    transition: opacity 0.8s ease-out;
     will-change: opacity;
 }
 
