@@ -300,23 +300,23 @@ a {
 /* Testimonial Section */
 .testimonial-section {
     background: var(--bg-alt);
-    padding: 80px 5% 80px;
+    padding: 60px 5%;
     display: flex;
     justify-content: center;
 }
 .testimonial-container {
-    max-width: 680px;
+    max-width: 480px;
     width: 100%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
     text-align: center;
     background: var(--bg);
-    border-radius: 24px;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.07);
-    padding: 28px 24px;
+    border-radius: 20px;
+    box-shadow: 0 4px 25px rgba(0,0,0,0.05);
+    padding: 35px 25px;
 }
 .testimonial-client {
     display: flex;
@@ -362,19 +362,19 @@ a {
 }
 .testimonial-stars {
     color: #e67c23;
-    font-size: 1.05rem;
+    font-size: 0.9rem;
     letter-spacing: 2px;
 }
 .testimonial-score {
     color: var(--text);
-    font-size: 0.94rem;
+    font-size: 0.85rem;
     font-weight: 600;
 }
 .testimonial-quote {
-    font-size: 0.94rem;
+    font-size: 0.88rem;
     color: var(--text);
     font-style: italic;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     width: 100%;
 }
 .testimonial-quote p {
@@ -461,6 +461,13 @@ a {
 }
 
 /* 4. PORTFOLIO GALLERY (portfolio.html) */
+.portfolio-header {
+    font-family: 'Montserrat', sans-serif;
+    font-size: .7rem;
+    padding: 140px 5% 40px;
+    text-align: center;
+}
+
 .gallery {
     column-count: 3;
     column-gap: 25px;
@@ -625,41 +632,40 @@ a {
 }
 
 /* 7. RESPONSIVE */
+
+/* --- TABLET CORE (1024px and below) --- */
 @media (max-width: 1024px) {
-    .hero { padding: 0; position: relative; text-align: center; overflow: hidden; }
-    .hero-container { display: block; padding: 40px 5%; }
-    .hero-text { position: relative; z-index: 10; max-width: 600px; margin: 0 auto; }
-    .hero-text .description { margin: 0 auto 30px; color: #333; }
-    .cta-container { justify-content: center; }
-    .hero-image { position: absolute; top: 70%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: 100%; z-index: 1; opacity: 0.4; pointer-events: none; }
-    .image-wrapper { padding-bottom: 0; height: 100%; }
-    .image-wrapper img { height: 60%; width: auto; left: 50%; transform: translateX(-50%) scale(1.05); }
-    .about-container { grid-template-columns: 1fr 1.1fr; gap: 60px; }
-    .about-text { text-align: left; }
+    .hero { padding: 140px 5% 60px; text-align: left; }
+    .hero-container { grid-template-columns: 1fr 1.15fr; gap: 40px; }
+    .hero-text { max-width: none; margin: 0; }
+    .hero-text .description { margin: 0 0 30px 0; }
+    .cta-container { justify-content: flex-start; flex-wrap: nowrap; gap: 20px; }
+    .hero-image { position: static; opacity: 1; width: 100%; max-width: none; margin: 0; }
+    .image-wrapper { padding-bottom: 0; aspect-ratio: 4/5; }
+    .image-wrapper img { position: static; transform: none; height: 100%; width: 100%; }
+
+    .about-container { grid-template-columns: 1fr 1.1fr; gap: 40px; text-align: left; }
+    .about-visual { order: 0; max-width: none; margin: 0; }
     .about-text p { margin-left: 0; margin-right: 0; }
-    .about-visual { max-width: none; margin: 0; }
-    .about-image-wrapper { padding-bottom: 145%; height: auto; }
-    .about-image-wrapper img { height: 100%; width: 100%; left: 0; transform: scale(1.03); }
-    .gallery { column-count: 2; }
-    .services-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
-    .service-card { padding: 28px 16px 20px; }
+    .about-image-wrapper { padding-bottom: 0; aspect-ratio: 4/5; }
+    .about-image-wrapper img { position: static; height: 100%; width: 100%; transform: none; border-radius: 26px; }
+
+    .services-section { padding: 80px 5%; }
+    .services-cards { 
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 30px; 
+        max-width: 900px; 
+        margin: 0 auto;
+    }
+    .service-card { padding: 32px 24px; }
+    .btn { padding: 16px 30px; font-size: 0.75rem; text-align: center; white-space: nowrap; }
 }
 
+/* --- MOBILE CORE (768px and below) --- */
 @media (max-width: 768px) {
     .menu-toggle { display: inline-flex; }
 
-    .about-text h2 {
-        font-size: clamp(1rem, 3.2vw, 1.2rem);
-    }
-
-    .about-text p {
-        font-size: 0.85rem;
-        line-height: 1.55;
-    }
-
-    .nav-container {
-        flex-wrap: wrap;
-    }
+    .nav-container { flex-wrap: wrap; }
 
     .nav-links {
         display: none;
@@ -679,16 +685,40 @@ a {
         margin-left: 0;
     }
 
+    .hero { text-align: center; }
+    .hero-container { grid-template-columns: 1fr; }
+    .hero-text { max-width: 800px; margin: 0 auto; }
     .hero-text h1 { font-size: 3.2rem; }
+    .hero-text .description { margin: 0 auto 30px; }
+    .cta-container { justify-content: center; }
+    .hero-image { display: none; }
+
+    .about-section { position: relative; overflow: hidden; }
+    .about-container { display: block; position: relative; text-align: center; }
+    .about-visual { 
+        position: absolute; 
+        inset: 0; 
+        z-index: 0; 
+        opacity: 0.15; 
+        max-width: none; 
+        margin: 0; 
+        pointer-events: none; 
+    }
+    .about-image-wrapper { height: 100%; padding-bottom: 0; }
+    .about-image-wrapper img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 0; }
+    .about-text { position: relative; z-index: 1; padding: 60px 20px; }
+    .about-text p { margin-left: auto; margin-right: auto; color: var(--text); }
+
     .btn { padding: 14px 22px; font-size: 0.65rem; }
 
     .services-section { padding: 60px 2% 40px; }
     .services-title { font-size: 1.4rem; margin-bottom: 28px; }
-    .services-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .services-cards { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; gap: 20px; }
     .service-card { padding: 20px 8px 16px; }
     .service-card .service-name { font-size: 0.95rem; }
     .service-card .service-desc { font-size: 0.88rem; }
     .service-icon { width: 48px; height: 48px; margin-bottom: 12px; }
 
     .testimonial-rating { justify-content: center; }
+    
 }
