@@ -71,6 +71,29 @@ if (galleryItems.length > 0) {
     });
 }
 
+// Portfolio Filtering Logic
+const filterBtns = document.querySelectorAll('.filter-btn');
+if (filterBtns.length > 0) {
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Update active state
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const filterValue = btn.getAttribute('data-filter');
+            
+            galleryItems.forEach(item => {
+                const itemCategory = item.getAttribute('data-category');
+                if (filterValue === 'all' || filterValue === itemCategory) {
+                    item.classList.remove('hide');
+                } else {
+                    item.classList.add('hide');
+                }
+            });
+        });
+    });
+}
+
 // Slider Input Logic
 if (slider) {
     slider.addEventListener('input', (e) => {

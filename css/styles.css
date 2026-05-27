@@ -164,7 +164,7 @@ a {
 
 .services-cards {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 40px;
     justify-content: center;
 }
@@ -481,30 +481,66 @@ a {
 /* 4. PORTFOLIO GALLERY (portfolio.html) */
 .portfolio-header {
     font-family: 'Montserrat', sans-serif;
-    font-size: .8rem;
-    padding: 140px 5% 40px;
+    font-size: 0.7rem;
+    padding: 90px 5% 40px;
     text-align: center;
 }
 
+.portfolio-filters {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: transparent;
+    border: 1px solid #eee;
+    padding: 10px 24px;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    color: var(--subtle);
+}
+
+.filter-btn:hover {
+    border-color: var(--text);
+    color: var(--text);
+}
+
+.filter-btn.active {
+    background: var(--text);
+    color: #fff;
+    border-color: var(--text);
+}
+
 .gallery {
-    column-count: 3;
-    column-gap: 25px;
+    display: grid; /* Changed from column-count to grid for flexible layout */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Flexible columns, min 300px wide */
+    gap: 25px; /* Spacing between grid items */
     padding: 0 5% 100px;
     max-width: 1400px;
     margin: 0 auto;
+    justify-content: center; /* Center items if they don't fill the last row */
 }
 
 .gallery-item {
-    display: inline-block;
-    width: 100%;
-    break-inside: avoid;
-    margin-bottom: 25px;
+    /* Removed column-count specific styles as they are not needed for grid items */
     position: relative;
     cursor: pointer;
     overflow: hidden;
     background: var(--bg-alt);
     border-radius: 18px;
     aspect-ratio: 1 / 1;
+}
+
+.gallery-item.hide {
+    display: none;
 }
 
 .gallery-item img {
@@ -657,6 +693,11 @@ a {
     .hero-container { grid-template-columns: 1fr 1.15fr; gap: 40px; }
     .hero-text { max-width: none; margin: 0; }
     .hero-text .description { margin: 0 0 30px 0; }
+    .gallery {
+        /* column-count: 2; */ /* Removed, replaced by grid */
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjust minmax for tablets */
+        gap: 20px; /* Adjust gap for tablets */
+    }
     .cta-container { justify-content: flex-start; flex-wrap: nowrap; gap: 20px; }
     .hero-image { position: static; opacity: 1; width: 100%; max-width: none; margin: 0; }
     .image-wrapper { padding-bottom: 0; aspect-ratio: 4/5; }
@@ -711,6 +752,16 @@ a {
     .cta-container { justify-content: center; }
     .hero-image { display: none; }
 
+    .portfolio-header { padding-top: 110px; }
+    .portfolio-filters { gap: 8px; }
+    .filter-btn { padding: 8px 16px; font-size: 0.65rem; }
+
+    .gallery {
+        /* column-count: 1; */ /* Removed, replaced by grid */
+        grid-template-columns: 1fr; /* Single column on mobile */
+        gap: 15px; /* Adjust gap for mobile */
+    }
+
     .about-section { padding: 60px 5%; }
     .about-container { display: flex; flex-direction: column; align-items: center; text-align: center; }
     .about-visual { 
@@ -745,6 +796,12 @@ a {
         opacity: 1; /* Ensure it's visible on mobile */
     }
 
+    /* Modal adjustments for small screens */
+    .modal { padding: 20px; }
+    .close-btn { top: 20px; right: 20px; font-size: 32px; }
+    .comparison-wrapper { max-height: 70vh; }
+    .comparison-wrapper img { max-height: 70vh; }
+    .label { font-size: 0.75rem; padding: 6px 12px; }
 
     .testimonial-rating { justify-content: center; }
     
