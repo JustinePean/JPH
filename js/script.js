@@ -74,24 +74,53 @@ if (galleryItems.length > 0) {
 // Portfolio Filtering Logic
 const filterBtns = document.querySelectorAll('.filter-btn');
 if (filterBtns.length > 0) {
+    // Function to reveal items with a staggered delay
+    const revealGalleryItems = () => {
+        let i = 0;
+        galleryItems.forEach(item => {
+            if (!item.classList.contains('hide')) {
+                item.style.transitionDelay = `${i * 0.08}s`;
+                item.classList.add('is-visible');
+                i++;
+            }
+        });
+    };
+
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
+            if (btn.classList.contains('active')) return;
+
             // Update active state
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
             const filterValue = btn.getAttribute('data-filter');
             
+            // 1. Exit animation: remove visibility class and reset delays
             galleryItems.forEach(item => {
-                const itemCategory = item.getAttribute('data-category');
-                if (filterValue === 'all' || filterValue === itemCategory) {
-                    item.classList.remove('hide');
-                } else {
-                    item.classList.add('hide');
-                }
+                item.classList.remove('is-visible');
+                item.style.transitionDelay = '0s';
             });
+
+            // 2. Wait for exit transition, then swap categories and re-reveal
+            setTimeout(() => {
+                galleryItems.forEach(item => {
+                    const itemCategory = item.getAttribute('data-category');
+                    if (filterValue === 'all' || filterValue === itemCategory) {
+                        item.classList.remove('hide');
+                    } else {
+                        item.classList.add('hide');
+                    }
+                });
+                
+                // Re-reveal items with stagger
+                requestAnimationFrame(revealGalleryItems);
+            }, 400); // Wait for the exit fade (0.4s feels snappier than the full 0.6s)
         });
     });
+
+    // Initial staggered reveal on page load
+    window.addEventListener('load', revealGalleryItems);
 }
 
 // Slider Input Logic
@@ -121,6 +150,9 @@ window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal.style.display === 'flex') closeModal();
 });
 
+// Check for Scroll-Driven Animations support
+const supportsScrollTimeline = window.CSS && CSS.supports('animation-timeline', 'view()');
+
 // Parallax and Entrance Animations
 if (aboutSection && heroImage && aboutVisual) {
     // 1. Hero Entrance on Load
@@ -134,8 +166,8 @@ if (aboutSection && heroImage && aboutVisual) {
         const windowHeight = window.innerHeight;
         const isMobile = window.innerWidth <= 768;
 
-        // Hero Parallax (Desktop/Tablet only)
-        if (!isMobile && heroImage.classList.contains('is-loaded')) {
+        // Hero Parallax (Desktop/Tablet only) - Fallback for browsers without Scroll-Driven Animations
+        if (!isMobile && heroImage.classList.contains('is-loaded') && !supportsScrollTimeline) {
             heroImage.style.transition = 'none'; 
             heroImage.style.transform = `translateX(-${scrolled * 0.5}px)`;
             heroImage.style.opacity = Math.max(0, 1 - scrolled / 600);
@@ -167,5 +199,32 @@ if (aboutSection && heroImage && aboutVisual) {
             aboutVisual.style.transform = isMobile ? 'translateY(80px)' : 'translateX(100%)';
             aboutVisual.style.filter = 'blur(8px)';
         }
+    });
+}
+
+// Intersection Observer for Service Cards Reveal
+const serviceCards = document.querySelectorAll('.service-card');
+if (serviceCards.length > 0) {
+    const serviceObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('reveal');
+                // Stop observing once the animation has triggered
+                serviceObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1, // Trigger when 10% of the card is visible
+        rootMargin: '0px 0px -50px 0px' // Offset to trigger slightly before it enters fully
+    });
+
+    serviceCards.forEach((card, index) => {
+        // Check if we are on mobile (stacked layout)
+        const isMobile = window.innerWidth <= 768;
+
+        // Only apply stagger on desktop/tablet. On mobile, we set delay to 0s
+        // so the card reveals immediately as it enters the viewport.
+        card.style.transitionDelay = isMobile ? '0s' : `${index * 0.1}s`;
+        serviceObserver.observe(card);
     });
 }
