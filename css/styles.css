@@ -298,21 +298,26 @@ a {
 .btn:hover { background: var(--accent); color: #fff; transform: translateY(-3px); }
 
 /* Animation base styles */
-.hero-image,
-.about-visual {
-    transition: opacity 0.8s ease-in;
-    will-change: opacity;
+.hero-image {
+    opacity: 0;
+    transform: translateY(-50px);
+    filter: blur(8px);
+    transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.5s ease, filter 0.5s ease;
+    will-change: transform, opacity, filter;
 }
 
-/* Animation states triggered by JS */
-.fade-out { opacity: 0 !important; }
-.fade-in { opacity: 1 !important; }
+.hero-image.is-loaded {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+}
 
-/* Initial state for about-visual on desktop/tablet */
-@media (min-width: 769px) {
-    .about-visual {
-        opacity: 0; /* Hidden by default on desktop/tablet */
-    }
+.about-visual {
+    opacity: 0;
+    transform: translateX(100%);
+    filter: blur(8px);
+    transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1), opacity 1.2s ease, filter 1.2s ease;
+    will-change: transform, opacity, filter;
 }
 
 /* Testimonial Section */
@@ -422,8 +427,8 @@ a {
 }
 
 .about-section {
-    padding: 20px 5% 70px;
-    background: var(--bg);
+    padding: 100px 5% 70px;
+    background: linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 100%);
 }
 
 .about-container {
@@ -485,6 +490,22 @@ a {
     padding: 90px 5% 40px;
     text-align: center;
 }
+
+.portfolio-header h1 {
+    animation: fadeInUp 0.8s cubic-bezier(0.19, 1, 0.22, 1) both;
+}
+
+.portfolio-filters .filter-btn {
+    opacity: 0;
+    animation: fadeInUp 0.8s cubic-bezier(0.19, 1, 0.22, 1) both;
+}
+
+/* Staggered animation delays for filter buttons */
+.portfolio-filters .filter-btn:nth-child(1) { animation-delay: 0.1s; }
+.portfolio-filters .filter-btn:nth-child(2) { animation-delay: 0.2s; }
+.portfolio-filters .filter-btn:nth-child(3) { animation-delay: 0.3s; }
+.portfolio-filters .filter-btn:nth-child(4) { animation-delay: 0.4s; }
+.portfolio-filters .filter-btn:nth-child(5) { animation-delay: 0.5s; }
 
 .portfolio-filters {
     margin-top: 30px;
@@ -577,6 +598,18 @@ a {
 }
 
 .gallery-item:hover .overlay { opacity: 1; }
+
+/* Entry Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 /* 5. MODAL & COMPARISON SLIDER */
 .modal { 
@@ -766,7 +799,6 @@ a {
     .about-container { display: flex; flex-direction: column; align-items: center; text-align: center; }
     .about-visual { 
         position: static; 
-        opacity: 1; 
         max-width: 340px; 
         width: 100%;
         margin-bottom: 30px; 
@@ -780,23 +812,6 @@ a {
     .btn { padding: 14px 22px; font-size: 0.65rem; }
 
     .services-section { padding: 60px 2% 40px; }
-    .services-title { font-size: 1.4rem; margin-bottom: 28px; }
-    .services-cards { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; gap: 20px; }
-    .service-card { padding: 20px 8px 16px; }
-    .service-card .service-name { font-size: 0.95rem; }
-    .service-card .service-desc { font-size: 0.88rem; }
-    .service-icon { width: 48px; height: 48px; margin-bottom: 12px; }
-
-    /* Ensure elements are visible on mobile if they were hidden for desktop animation */
-    .hero-image.fade-out {
-        opacity: 1; /* Override fade-out on mobile */
-    }
-
-    .about-visual.fade-in {
-        opacity: 1; /* Ensure it's visible on mobile */
-    }
-
-    /* Modal adjustments for small screens */
     .modal { padding: 20px; }
     .close-btn { top: 20px; right: 20px; font-size: 32px; }
     .comparison-wrapper { max-height: 70vh; }

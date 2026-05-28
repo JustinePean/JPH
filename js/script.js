@@ -121,34 +121,51 @@ window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal.style.display === 'flex') closeModal();
 });
 
-// Intersection Observer for hero/about image animations
+// Parallax and Entrance Animations
 if (aboutSection && heroImage && aboutVisual) {
-    const observerOptions = {
-        root: null, // viewport
-        rootMargin: '0px',
-        threshold: 0.3 // Trigger when 30% of the about section is visible
-    };
+    // 1. Hero Entrance on Load
+    window.addEventListener('load', () => {
+        heroImage.classList.add('is-loaded');
+    });
 
-    const aboutSectionObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            // Only apply animation on desktop/tablet (not mobile)
-            if (window.innerWidth > 768) {
-                if (entry.isIntersecting) {
-                    // About section is visible, make hero-image disappear, about-visual appear
-                    heroImage.classList.add('fade-out');
-                    aboutVisual.classList.add('fade-in');
-                } else {
-                    // About section is not visible, make hero-image appear, about-visual disappear
-                    heroImage.classList.remove('fade-out');
-                    aboutVisual.classList.remove('fade-in');
-                }
+    // 2. Parallax Scroll Logic
+    window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+        const windowHeight = window.innerHeight;
+        const isMobile = window.innerWidth <= 768;
+
+        // Hero Parallax (Desktop/Tablet only)
+        if (!isMobile && heroImage.classList.contains('is-loaded')) {
+            heroImage.style.transition = 'none'; 
+            heroImage.style.transform = `translateX(-${scrolled * 0.5}px)`;
+            heroImage.style.opacity = Math.max(0, 1 - scrolled / 600);
+            heroImage.style.filter = `blur(${Math.min(8, scrolled / 50)}px)`;
+        }
+
+        // About Visual Parallax
+        const aboutRect = aboutSection.getBoundingClientRect();
+        
+        if (aboutRect.top < windowHeight && aboutRect.bottom > 0) {
+            // Calculate progress (1 when entering from bottom, 0 when at top)
+            const progress = Math.max(0, Math.min(1, aboutRect.top / windowHeight));
+
+            aboutVisual.style.transition = 'none'; // Smooth response to scroll
+            aboutVisual.style.opacity = Math.max(0, 1 - progress);
+            aboutVisual.style.filter = `blur(${Math.min(8, progress * 20)}px)`;
+            
+            if (isMobile) {
+                // Mobile: Slide in from down to top
+                const moveY = progress * 80; // Starts 80px below and moves to 0
+                aboutVisual.style.transform = `translateY(${moveY}px)`;
             } else {
-                // On mobile, ensure classes are removed to respect mobile-specific CSS
-                heroImage.classList.remove('fade-out');
-                aboutVisual.classList.remove('fade-in');
+                // Desktop/Tablet: Slide in from right
+                const moveX = progress * 100;
+                aboutVisual.style.transform = `translateX(${moveX}%)`;
             }
-        });
-    }, observerOptions);
-
-    aboutSectionObserver.observe(aboutSection);
+        } else if (aboutRect.top >= windowHeight) {
+            aboutVisual.style.opacity = '0';
+            aboutVisual.style.transform = isMobile ? 'translateY(80px)' : 'translateX(100%)';
+            aboutVisual.style.filter = 'blur(8px)';
+        }
+    });
 }
