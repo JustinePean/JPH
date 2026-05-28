@@ -177,7 +177,7 @@ if (aboutSection && heroImage && aboutVisual) {
         // About Visual Parallax
         const aboutRect = aboutSection.getBoundingClientRect();
         
-        if (aboutRect.top < windowHeight && aboutRect.bottom > 0) {
+        if (aboutRect.top < windowHeight && aboutRect.bottom > 0 && !supportsScrollTimeline) {
             // Calculate progress (1 when entering from bottom, 0 when at top)
             const progress = Math.max(0, Math.min(1, aboutRect.top / windowHeight));
 

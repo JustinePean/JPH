@@ -24,8 +24,13 @@
 }
 
 html {
-    scroll-snap-type: y proximity;
+    scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
+}
+
+/* Disable scroll snapping on the portfolio page to prevent getting stuck at the footer */
+html.portfolio-page {
+    scroll-snap-type: none;
 }
 
 @font-face {
@@ -138,6 +143,7 @@ a {
 .hero {
     height: 100vh;
     scroll-snap-align: start;
+    scroll-snap-stop: always;
     display: flex;
     align-items: center;
     padding: 160px 5% 100px;
@@ -179,6 +185,7 @@ a {
 /* SERVICES SECTION */
 .services-section {
     scroll-snap-align: start;
+    scroll-snap-stop: always;
     background: var(--bg);
     padding: 80px 5% 60px;
     display: flex;
@@ -380,6 +387,28 @@ a {
     }
 }
 
+@keyframes about-3d-entry {
+    0% {
+        transform: perspective(1000px) rotateX(-15deg) rotateY(8deg) translateZ(-300px);
+        opacity: 0;
+        filter: blur(8px);
+    }
+    100% {
+        transform: perspective(1000px) rotateX(0) rotateY(0) translateZ(0);
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+/* Modern browser adjustments for About section visual elements */
+@supports (animation-timeline: view()) {
+    .about-visual {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+    }
+}
+
 .about-visual {
     opacity: 0;
     transform: translateX(100%);
@@ -391,6 +420,7 @@ a {
 /* Testimonial Section */
 .testimonial-section {
     scroll-snap-align: start;
+    scroll-snap-stop: always;
     background: var(--bg-alt);
     padding: 60px 5%;
     display: flex;
@@ -497,6 +527,7 @@ a {
 
 .about-section {
     scroll-snap-align: start;
+    scroll-snap-stop: always;
     padding: 100px 5% 70px;
     background: linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 100%);
 }
@@ -508,6 +539,13 @@ a {
     grid-template-columns: 1fr 1.1fr;
     gap: 60px;
     align-items: center;
+    /* Scroll-Driven 3D Transform Entrance */
+    transform-style: preserve-3d;
+    view-timeline-name: --about-scroll;
+    animation: about-3d-entry linear both;
+    animation-timeline: --about-scroll;
+    animation-range: entry 0% entry 100%;
+    will-change: transform, opacity;
 }
 
 .about-visual {
@@ -792,6 +830,7 @@ a {
 /* 6. FOOTER */
 .footer {
     scroll-snap-align: start;
+    scroll-snap-stop: always;
     padding: 60px 5%;
     text-align: center;
     font-size: 0.7rem;
