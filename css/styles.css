@@ -381,9 +381,9 @@ a {
         filter: blur(0);
     }
     100% {
-        transform: perspective(1000px) rotateX(15deg) rotateY(-8deg) translateZ(-300px);
+        transform: perspective(1000px) rotateX(8deg) rotateY(-4deg) translateZ(-150px);
         opacity: 0;
-        filter: blur(12px);
+        filter: blur(8px);
     }
 }
 
@@ -403,17 +403,45 @@ a {
 /* Modern browser adjustments for About section visual elements */
 @supports (animation-timeline: view()) {
     .about-visual {
-        opacity: 1 !important;
-        transform: none !important;
-        filter: none !important;
+        animation: about-visual-entrance linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 100%;
+    }
+}
+
+@keyframes about-visual-entrance {
+    from {
+        opacity: 0;
+        transform: translateX(30%);
+        filter: blur(4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+        filter: blur(0);
+    }
+}
+
+@media (max-width: 768px) {
+    @keyframes about-visual-entrance {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+            filter: blur(4px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
     }
 }
 
 .about-visual {
     opacity: 0;
-    transform: translateX(100%);
-    filter: blur(8px);
-    transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1), opacity 1.2s ease, filter 1.2s ease;
+    transform: translateX(30%);
+    filter: blur(4px);
+    transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 1.2s ease, filter 1.2s ease;
     will-change: transform, opacity, filter;
 }
 

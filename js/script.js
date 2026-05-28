@@ -169,35 +169,37 @@ if (aboutSection && heroImage && aboutVisual) {
         // Hero Parallax (Desktop/Tablet only) - Fallback for browsers without Scroll-Driven Animations
         if (!isMobile && heroImage.classList.contains('is-loaded') && !supportsScrollTimeline) {
             heroImage.style.transition = 'none'; 
-            heroImage.style.transform = `translateX(-${scrolled * 0.5}px)`;
-            heroImage.style.opacity = Math.max(0, 1 - scrolled / 600);
-            heroImage.style.filter = `blur(${Math.min(8, scrolled / 50)}px)`;
+            heroImage.style.transform = `translateX(-${scrolled * 0.25}px)`;
+            heroImage.style.opacity = Math.max(0, 1 - scrolled / 900);
+            heroImage.style.filter = `blur(${Math.min(6, scrolled / 100)}px)`;
         }
 
         // About Visual Parallax
         const aboutRect = aboutSection.getBoundingClientRect();
         
-        if (aboutRect.top < windowHeight && aboutRect.bottom > 0 && !supportsScrollTimeline) {
-            // Calculate progress (1 when entering from bottom, 0 when at top)
-            const progress = Math.max(0, Math.min(1, aboutRect.top / windowHeight));
+        if (!supportsScrollTimeline) {
+            if (aboutRect.top < windowHeight && aboutRect.bottom > 0) {
+                // Calculate progress (1 when entering from bottom, 0 when at top)
+                const progress = Math.max(0, Math.min(1, aboutRect.top / windowHeight));
 
-            aboutVisual.style.transition = 'none'; // Smooth response to scroll
-            aboutVisual.style.opacity = Math.max(0, 1 - progress);
-            aboutVisual.style.filter = `blur(${Math.min(8, progress * 20)}px)`;
-            
-            if (isMobile) {
-                // Mobile: Slide in from down to top
-                const moveY = progress * 80; // Starts 80px below and moves to 0
-                aboutVisual.style.transform = `translateY(${moveY}px)`;
-            } else {
-                // Desktop/Tablet: Slide in from right
-                const moveX = progress * 100;
-                aboutVisual.style.transform = `translateX(${moveX}%)`;
+                aboutVisual.style.transition = 'none'; // Smooth response to scroll
+                aboutVisual.style.opacity = Math.max(0, 1 - progress);
+                aboutVisual.style.filter = `blur(${Math.min(4, progress * 10)}px)`; 
+                
+                if (isMobile) {
+                    // Mobile: Slide in from down to top
+                    const moveY = progress * 30; 
+                    aboutVisual.style.transform = `translateY(${moveY}px)`;
+                } else {
+                    // Desktop/Tablet: Slide in from right
+                    const moveX = progress * 30; 
+                    aboutVisual.style.transform = `translateX(${moveX}%)`; 
+                }
+            } else if (aboutRect.top >= windowHeight) {
+                aboutVisual.style.opacity = '0';
+                aboutVisual.style.transform = isMobile ? 'translateY(30px)' : 'translateX(30%)';
+                aboutVisual.style.filter = 'blur(4px)';
             }
-        } else if (aboutRect.top >= windowHeight) {
-            aboutVisual.style.opacity = '0';
-            aboutVisual.style.transform = isMobile ? 'translateY(80px)' : 'translateX(100%)';
-            aboutVisual.style.filter = 'blur(8px)';
         }
     });
 }
