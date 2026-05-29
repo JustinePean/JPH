@@ -13,28 +13,44 @@ const galleryItems = document.querySelectorAll('.gallery-item');
 const menuToggle = document.querySelector('.menu-toggle');
 const navLinks = document.querySelector('.nav-links');
 const navbar = document.querySelector('.navbar');
+const progressBar = document.querySelector('.scroll-progress');
+const backToTopBtn = document.querySelector('.back-to-top');
 
 const heroImage = document.querySelector('.hero-image');
 const aboutSection = document.querySelector('.about-section');
 const aboutVisual = document.querySelector('.about-visual');
 const aboutText = document.querySelector('.about-text');
-if (menuToggle && navLinks) {
-    menuToggle.addEventListener('click', () => {
-        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-        menuToggle.setAttribute('aria-expanded', String(!isExpanded));
-        navLinks.classList.toggle('is-open');
 
-        if (navbar && navLinks.classList.contains('is-open')) {
-            navbar.classList.remove('is-hidden');
-        }
-    });
-}
+const updateProgressBar = () => {
+    if (progressBar) {
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = height > 0 ? (window.scrollY / height) * 100 : 0;
+        progressBar.style.width = scrolled + "%";
+    }
+};
 
 if (navbar) {
     let lastScrollY = window.scrollY;
 
     window.addEventListener('scroll', () => {
         const currentScrollY = window.scrollY;
+        updateProgressBar();
+
+        // Back to Top button visibility
+        if (backToTopBtn) {
+            if (currentScrollY > 400) {
+                backToTopBtn.classList.add('is-visible');
+            } else {
+                backToTopBtn.classList.remove('is-visible');
+            }
+        }
+
+        // Toggle scrolled state for height and background changes
+        if (currentScrollY > 50) {
+            navbar.classList.add('is-scrolled');
+        } else {
+            navbar.classList.remove('is-scrolled');
+        }
 
         if (currentScrollY <= 0) {
             navbar.classList.remove('is-hidden');
@@ -50,6 +66,32 @@ if (navbar) {
 
         lastScrollY = currentScrollY;
     });
+
+    // Initialize progress bar immediately or on load
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        updateProgressBar();
+    } else {
+        window.addEventListener('DOMContentLoaded', updateProgressBar);
+    }
+}
+
+// Back to Top Click Handler
+if (backToTopBtn) {
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
+
+if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', String(!isExpanded));
+        navLinks.classList.toggle('is-open');
+
+        if (navbar && navLinks.classList.contains('is-open')) {
+            navbar.classList.remove('is-hidden');
+        }
+    });
 }
 
 // Initialize Gallery Listeners
@@ -63,7 +105,7 @@ if (galleryItems.length > 0) {
             imgAfter.src = afterSrc;
             
             modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
+            document.body.style.overflow = 'hidden'; 
             
             // Reset slider to middle
             slider.value = 50;
@@ -94,7 +136,6 @@ if (filterBtns.length > 0) {
             // Update active state
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-
             const filterValue = btn.getAttribute('data-filter');
             
             // 1. Exit animation: remove visibility class and reset delays
@@ -114,9 +155,12 @@ if (filterBtns.length > 0) {
                     }
                 });
                 
+                // Reset scroll position to avoid being stuck in dead space after filtering
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
                 // Re-reveal items with stagger
                 requestAnimationFrame(revealGalleryItems);
-            }, 400); // Wait for the exit fade (0.4s feels snappier than the full 0.6s)
+            }, 400);
         });
     });
 
@@ -148,61 +192,72 @@ window.addEventListener('click', (e) => {
 
 // Close on Escape key
 window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.style.display === 'flex') closeModal();
+    if (e.key === 'Escape' && modal && modal.style.display === 'flex') closeModal();
 });
 
 // Check for Scroll-Driven Animations support
 const supportsScrollTimeline = window.CSS && CSS.supports('animation-timeline', 'view()');
 
-// Parallax and Entrance Animations
-if (aboutSection && heroImage && aboutVisual && aboutText) {
-    // 1. Hero Entrance on Load
-    window.addEventListener('load', () => {
-        heroImage.classList.add('is-loaded');
-    });
+// 1. Hero Entrance Logic
+if (heroImage) {
+    const triggerHeroLoad = () => heroImage.classList.add('is-loaded');
+    if (document.readyState === 'complete') triggerHeroLoad();
+    else window.addEventListener('load', triggerHeroLoad);
+}
 
+// 2. Scroll-Based Parallax & Reveals
+if (heroImage || aboutSection) {
     // 2. Parallax Scroll Logic
     let ticking = false;
+    let windowHeight = window.innerHeight;
+    let isMobile = window.innerWidth <= 768;
+
+    window.addEventListener('resize', () => {
+        windowHeight = window.innerHeight;
+        isMobile = window.innerWidth <= 768;
+    });
+
     window.addEventListener('scroll', () => {
         if (!ticking) {
             window.requestAnimationFrame(() => {
                 const scrolled = window.scrollY;
-                const windowHeight = window.innerHeight;
-                const isMobile = window.innerWidth <= 768;
+                const aboutImageWrapper = aboutVisual?.querySelector('.about-image-wrapper');
+                const aboutImg = aboutVisual?.querySelector('img');
 
                 // Hero Parallax (Desktop/Tablet only)
-                if (!isMobile && heroImage.classList.contains('is-loaded') && !supportsScrollTimeline) {
-                    heroImage.style.transition = 'none'; 
+                if (heroImage && !isMobile && heroImage.classList.contains('is-loaded') && !supportsScrollTimeline) {
                     heroImage.style.transform = `translateX(-${scrolled * 0.25}px)`;
                     heroImage.style.opacity = Math.max(0, 1 - scrolled / 900);
                     heroImage.style.filter = `blur(${Math.min(6, scrolled / 100)}px)`;
                 }
 
                 // About Visual Parallax
-                const aboutRect = aboutSection.getBoundingClientRect();
+                const aboutRect = aboutSection ? aboutSection.getBoundingClientRect() : null;
                 
-                if (!supportsScrollTimeline) {
+                if (!supportsScrollTimeline && aboutRect && aboutVisual && aboutText) {
                     if (aboutRect.top < windowHeight && aboutRect.bottom > 0) {
-                        const progress = Math.max(0, Math.min(1, aboutRect.top / windowHeight));
+                        // Calculate progress from 1 (enters bottom) to 0 (fully in view)
+                        const rawProgress = Math.max(0, Math.min(1, aboutRect.top / windowHeight));
+                        const revealProgress = 1 - rawProgress; // 0 to 1
 
-                        aboutVisual.style.transition = 'none';
-                        aboutVisual.style.opacity = Math.max(0, 1 - progress);
-                        aboutVisual.style.filter = `blur(${Math.min(4, progress * 10)}px)`; 
+                        aboutVisual.style.opacity = revealProgress;
+                        const blurValue = isMobile ? Math.max(0, 1 - revealProgress * 1) : Math.max(0, 4 - revealProgress * 4);
+                        aboutVisual.style.filter = `blur(${blurValue}px)`; 
                         
-                        if (isMobile) {
-                            const moveY = progress * 15;
-                            aboutVisual.style.transform = `translateY(${moveY}px) scale(${1 - progress * 0.05})`;
-                        } else {
-                            const moveX = progress * 25;
-                            aboutVisual.style.transform = `translateX(${moveX}%) scale(${1 - progress * 0.1})`;
+                        // Apply Masking and Scaling
+                        if (aboutImageWrapper && aboutImg) {
+                            const inset = 15 - (revealProgress * 15);
+                            const scale = 1.3 - (revealProgress * 0.3);
+                            aboutImageWrapper.style.clipPath = `inset(${inset}% ${inset}% ${inset}% ${inset}% round 26px)`;
+                            aboutImg.style.transform = `scale(${scale})`;
                         }
 
-                        const textMoveY = (progress - 0.5) * 50;
+                        const textMoveY = (rawProgress - 0.5) * 50;
                         aboutText.style.transform = `translateY(${textMoveY}px)`;
                     } else if (aboutRect.top >= windowHeight) {
                         aboutVisual.style.opacity = '0';
-                        aboutVisual.style.transform = isMobile ? 'translateY(15px) scale(0.95)' : 'translateX(25%) scale(0.9)';
-                        aboutVisual.style.filter = 'blur(4px)';
+                        if (aboutImageWrapper) aboutImageWrapper.style.clipPath = 'inset(15% 15% 15% 15% round 26px)';
+                        aboutVisual.style.filter = isMobile ? 'blur(1px)' : 'blur(4px)';
                         aboutText.style.transform = 'translateY(25px)';
                     }
                 }
@@ -210,7 +265,7 @@ if (aboutSection && heroImage && aboutVisual && aboutText) {
             });
             ticking = true;
         }
-    });
+    }, { passive: true });
 }
 
 // Intersection Observer for Service Cards Reveal
@@ -225,8 +280,8 @@ if (serviceCards.length > 0) {
             }
         });
     }, {
-        threshold: 0.1, // Trigger when 10% of the card is visible
-        rootMargin: '0px 0px -50px 0px' // Offset to trigger slightly before it enters fully
+        threshold: 0.05, 
+        rootMargin: '0px 0px -10% 0px' 
     });
 
     serviceCards.forEach((card, index) => {
@@ -238,4 +293,18 @@ if (serviceCards.length > 0) {
         card.style.transitionDelay = isMobile ? '0s' : `${index * 0.1}s`;
         serviceObserver.observe(card);
     });
+}
+
+// Progress Bar Color Change Observer
+if (aboutSection && progressBar) {
+    const progressColorObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                progressBar.classList.add('is-about');
+            } else {
+                progressBar.classList.remove('is-about');
+            }
+        });
+    }, { threshold: 0.1 }); // Triggers when 10% of the section is visible
+    progressColorObserver.observe(aboutSection);
 }
