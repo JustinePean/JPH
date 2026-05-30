@@ -1,5 +1,5 @@
 /**
- * Justine Pean Huyo-a Portfolio Script
+ * Justine Pean Huyo-a Work Script
  * Handles the Before/After Comparison Modal
  */
 
@@ -86,6 +86,7 @@ if (menuToggle && navLinks) {
     menuToggle.addEventListener('click', () => {
         const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
         menuToggle.setAttribute('aria-expanded', String(!isExpanded));
+        menuToggle.classList.toggle('is-active');
         navLinks.classList.toggle('is-open');
 
         if (navbar && navLinks.classList.contains('is-open')) {
@@ -114,7 +115,7 @@ if (galleryItems.length > 0) {
     });
 }
 
-// Portfolio Filtering Logic
+// Work Filtering Logic
 const filterBtns = document.querySelectorAll('.filter-btn');
 if (filterBtns.length > 0) {
     // Function to reveal items with a staggered delay
@@ -228,7 +229,6 @@ if (heroImage || aboutSection) {
                 if (heroImage && !isMobile && heroImage.classList.contains('is-loaded') && !supportsScrollTimeline) {
                     heroImage.style.transform = `translateX(-${scrolled * 0.25}px)`;
                     heroImage.style.opacity = Math.max(0, 1 - scrolled / 900);
-                    heroImage.style.filter = `blur(${Math.min(6, scrolled / 100)}px)`;
                 }
 
                 // About Visual Parallax
@@ -236,14 +236,12 @@ if (heroImage || aboutSection) {
                 
                 if (!supportsScrollTimeline && aboutRect && aboutVisual && aboutText) {
                     if (aboutRect.top < windowHeight && aboutRect.bottom > 0) {
-                        // Calculate progress from 1 (enters bottom) to 0 (fully in view)
-                        const rawProgress = Math.max(0, Math.min(1, aboutRect.top / windowHeight));
+                        // Calculate progress so it finishes when the top is 30% from the bottom of viewport
+                        const rawProgress = Math.max(0, Math.min(1, (aboutRect.top - windowHeight * 0.3) / (windowHeight * 0.7)));
                         const revealProgress = 1 - rawProgress; // 0 to 1
 
                         aboutVisual.style.opacity = revealProgress;
-                        const blurValue = isMobile ? Math.max(0, 1 - revealProgress * 1) : Math.max(0, 4 - revealProgress * 4);
-                        aboutVisual.style.filter = `blur(${blurValue}px)`; 
-                        
+
                         // Apply Masking and Scaling
                         if (aboutImageWrapper && aboutImg) {
                             const inset = 15 - (revealProgress * 15);
@@ -257,7 +255,6 @@ if (heroImage || aboutSection) {
                     } else if (aboutRect.top >= windowHeight) {
                         aboutVisual.style.opacity = '0';
                         if (aboutImageWrapper) aboutImageWrapper.style.clipPath = 'inset(15% 15% 15% 15% round 26px)';
-                        aboutVisual.style.filter = isMobile ? 'blur(1px)' : 'blur(4px)';
                         aboutText.style.transform = 'translateY(25px)';
                     }
                 }
@@ -307,4 +304,41 @@ if (aboutSection && progressBar) {
         });
     }, { threshold: 0.1 }); // Triggers when 10% of the section is visible
     progressColorObserver.observe(aboutSection);
+}
+
+// General Reveal on Scroll Logic
+const revealElements = document.querySelectorAll('.reveal-on-scroll');
+if (revealElements.length > 0) {
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-revealed');
+                // Stop observing once the animation has triggered
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+}
+
+// Dark Mode Toggle Logic
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
+
+// Check for saved theme preference
+const currentTheme = localStorage.getItem('theme');
+if (currentTheme === 'dark') {
+    body.classList.add('dark-mode');
+}
+
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        const theme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+        localStorage.setItem('theme', theme);
+    });
 }
