@@ -35,13 +35,14 @@ body.dark-mode {
 }
 
 html {
-    scroll-snap-type: y proximity;
     scroll-behavior: smooth;
 }
 
-/* Disable scroll snapping on the work page to prevent getting stuck at the footer */
-html.work-page {
-    scroll-snap-type: none;
+/* Only enable scroll snapping on larger screens for the main page */
+@media (min-width: 1024px) {
+    html:not(.work-page) {
+        scroll-snap-type: y proximity;
+    }
 }
 
 /* Prevent footer from "locking" the scroll on the work page */

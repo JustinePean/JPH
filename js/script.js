@@ -31,6 +31,7 @@ const updateProgressBar = () => {
 
 if (navbar) {
     let lastScrollY = window.scrollY;
+    const scrollThreshold = 10; // Minimum scroll distance to trigger navbar toggle
 
     window.addEventListener('scroll', () => {
         const currentScrollY = window.scrollY;
@@ -58,13 +59,15 @@ if (navbar) {
             return;
         }
 
-        if (currentScrollY > lastScrollY && !navLinks?.classList.contains('is-open')) {
-            navbar.classList.add('is-hidden');
-        } else {
-            navbar.classList.remove('is-hidden');
+        // Add a threshold check to prevent the navbar from flickering on tiny scroll movements
+        if (Math.abs(currentScrollY - lastScrollY) > scrollThreshold) {
+            if (currentScrollY > lastScrollY && !navLinks?.classList.contains('is-open')) {
+                navbar.classList.add('is-hidden');
+            } else {
+                navbar.classList.remove('is-hidden');
+            }
+            lastScrollY = currentScrollY;
         }
-
-        lastScrollY = currentScrollY;
     });
 
     // Initialize progress bar immediately or on load
