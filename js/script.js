@@ -9,6 +9,8 @@ const slider = document.getElementById('slider');
 const wrapper = document.getElementById('comparison-wrapper');
 const imgBefore = document.getElementById('modal-before');
 const imgAfter = document.getElementById('modal-after');
+const beforeImageSelect = document.getElementById('before-image-select');
+const beforeSelector = document.querySelector('.before-selector');
 const galleryItems = document.querySelectorAll('.gallery-item');
 const menuToggle = document.querySelector('.menu-toggle');
 const navLinks = document.querySelector('.nav-links');
@@ -102,10 +104,20 @@ if (menuToggle && navLinks) {
 if (galleryItems.length > 0) {
     galleryItems.forEach((item) => {
         item.addEventListener('click', () => {
-            const beforeSrc = item.getAttribute('data-before');
+            const beforeSources = item.getAttribute('data-before')
+                .split(',')
+                .map((source) => source.trim())
+                .filter(Boolean);
             const afterSrc = item.querySelector('img').src;
 
-            imgBefore.src = beforeSrc;
+            beforeImageSelect.replaceChildren(...beforeSources.map((source, index) => {
+                const option = document.createElement('option');
+                option.value = source;
+                option.textContent = `Before ${index + 1}`;
+                return option;
+            }));
+            beforeSelector.hidden = beforeSources.length < 2;
+            imgBefore.src = beforeSources[0] || '';
             imgAfter.src = afterSrc;
             
             modal.style.display = 'flex';
@@ -115,6 +127,14 @@ if (galleryItems.length > 0) {
             slider.value = 50;
             wrapper.style.setProperty('--position', '50%');
         });
+    });
+}
+
+if (beforeImageSelect) {
+    beforeImageSelect.addEventListener('change', () => {
+        imgBefore.src = beforeImageSelect.value;
+        slider.value = 50;
+        wrapper.style.setProperty('--position', '50%');
     });
 }
 

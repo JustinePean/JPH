@@ -1153,6 +1153,32 @@ body.dark-mode .close-btn {
 .label-before { left: 20px; }
 .label-after { right: 20px; }
 
+.before-selector {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 11;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: var(--bg);
+    padding: 8px 12px;
+}
+
+.before-selector select {
+    border: 1px solid var(--subtle);
+    background: var(--bg);
+    color: var(--text);
+    padding: 5px 8px;
+    font: inherit;
+    letter-spacing: 0;
+}
+
 /* 6. FOOTER */
 .footer {
     padding: 60px 5%;
@@ -1283,6 +1309,14 @@ body.dark-mode .close-btn {
     .comparison-wrapper { max-height: 70vh; }
     .comparison-wrapper img { max-height: 70vh; }
     .label { font-size: 0.75rem; padding: 6px 12px; }
+
+    .before-selector {
+        bottom: 12px;
+        width: max-content;
+        max-width: calc(100% - 40px);
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 
     .testimonial-rating { justify-content: center; }
     

@@ -42,8 +42,8 @@
 
     <main class="gallery-container">
         <div class="gallery">
-            <!-- Data-before holds the raw image path -->
-            <div class="gallery-item" data-before="images/architecturalbefore1.jpg" data-category="architectural">
+            <!-- Separate multiple before-image paths with commas in data-before. -->
+            <div class="gallery-item" data-before="images/architecturalbefore1.jpg, images/architecturalbefore2.jpg" data-category="architectural">
                 <img src="images/architecturalafter1.jpg" alt="Architectural 1">
                 <div class="overlay"><span>View Comparison</span></div>
             </div>
@@ -147,6 +147,10 @@
             <input type="range" min="0" max="100" value="50" class="slider-input" id="slider">
             <div class="slider-line"></div>
         </div>
+        <label class="before-selector" for="before-image-select" hidden>
+            Select Before Image:
+            <select id="before-image-select"></select>
+        </label>
     </div>
 
     <script src="js/script.js"></script>
