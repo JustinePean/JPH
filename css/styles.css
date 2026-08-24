@@ -1085,6 +1085,39 @@ body.dark-mode .close-btn {
     z-index: 1100; 
 }
 
+.comparison-nav {
+    position: absolute;
+    top: 50%;
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.8);
+    color: #222;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-50%);
+    transition: var(--transition);
+    z-index: 1100;
+}
+
+.comparison-nav:hover {
+    background: var(--text);
+    color: #fff;
+    transform: translateY(-50%) scale(1.08);
+}
+
+.comparison-nav-prev { left: 30px; }
+.comparison-nav-next { right: 30px; }
+
+body.dark-mode .comparison-nav {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(35, 35, 35, 0.85);
+    color: var(--text);
+}
+
 .comparison-wrapper { 
     position: relative; 
     max-width: 100%; 
@@ -1311,6 +1344,9 @@ body.dark-mode .close-btn {
     .services-section { padding: 60px 2% 40px; }
     .modal { padding: 20px; }
     .close-btn { top: 20px; right: 20px; font-size: 32px; }
+    .comparison-nav { width: 40px; height: 40px; }
+    .comparison-nav-prev { left: 12px; }
+    .comparison-nav-next { right: 12px; }
     .comparison-wrapper { max-height: 70vh; }
     .comparison-wrapper img { max-height: 70vh; }
     .label { font-size: 0.75rem; padding: 6px 12px; }

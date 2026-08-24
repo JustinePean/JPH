@@ -141,6 +141,9 @@
     <!-- Comparison Modal -->
     <div id="modal" class="modal">
         <button class="close-btn" aria-label="Close Modal">&times;</button>
+        <button class="comparison-nav comparison-nav-prev" id="comparison-prev" aria-label="Previous image">
+            <span aria-hidden="true">&#10094;</span>
+        </button>
         <div class="comparison-wrapper" id="comparison-wrapper">
             <div class="label label-before">Before</div>
             <div class="label label-after">After</div>
@@ -149,6 +152,9 @@
             <input type="range" min="0" max="100" value="50" class="slider-input" id="slider">
             <div class="slider-line"></div>
         </div>
+        <button class="comparison-nav comparison-nav-next" id="comparison-next" aria-label="Next image">
+            <span aria-hidden="true">&#10095;</span>
+        </button>
         <label class="before-selector" for="before-image-select" hidden>
             Select Before Image:
             <select id="before-image-select"></select>

@@ -11,12 +11,15 @@ const imgBefore = document.getElementById('modal-before');
 const imgAfter = document.getElementById('modal-after');
 const beforeImageSelect = document.getElementById('before-image-select');
 const beforeSelector = document.querySelector('.before-selector');
+const previousBtn = document.getElementById('comparison-prev');
+const nextBtn = document.getElementById('comparison-next');
 const galleryItems = document.querySelectorAll('.gallery-item');
 const menuToggle = document.querySelector('.menu-toggle');
 const navLinks = document.querySelector('.nav-links');
 const navbar = document.querySelector('.navbar');
 const progressBar = document.querySelector('.scroll-progress');
 const backToTopBtn = document.querySelector('.back-to-top');
+let activeGalleryIndex = -1;
 
 const heroImage = document.querySelector('.hero-image');
 const aboutSection = document.querySelector('.about-section');
@@ -102,32 +105,44 @@ if (menuToggle && navLinks) {
 
 // Initialize Gallery Listeners
 if (galleryItems.length > 0) {
-    galleryItems.forEach((item) => {
-        item.addEventListener('click', () => {
-            const beforeSources = item.getAttribute('data-before')
+    const openComparison = (item) => {
+        activeGalleryIndex = Array.from(galleryItems).indexOf(item);
+        const beforeSources = item.getAttribute('data-before')
                 .split(',')
                 .map((source) => source.trim())
                 .filter(Boolean);
-            const afterSrc = item.querySelector('img').src;
+        const afterSrc = item.querySelector('img').src;
 
-            beforeImageSelect.replaceChildren(...beforeSources.map((source, index) => {
-                const option = document.createElement('option');
-                option.value = source;
-                option.textContent = `Before ${index + 1}`;
-                return option;
-            }));
-            beforeSelector.hidden = beforeSources.length < 2;
-            imgBefore.src = beforeSources[0] || '';
-            imgAfter.src = afterSrc;
-            
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden'; 
-            
-            // Reset slider to middle
-            slider.value = 50;
-            wrapper.style.setProperty('--position', '50%');
-        });
+        beforeImageSelect.replaceChildren(...beforeSources.map((source, index) => {
+            const option = document.createElement('option');
+            option.value = source;
+            option.textContent = `Before ${index + 1}`;
+            return option;
+        }));
+        beforeSelector.hidden = beforeSources.length < 2;
+        imgBefore.src = beforeSources[0] || '';
+        imgAfter.src = afterSrc;
+
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+
+        slider.value = 50;
+        wrapper.style.setProperty('--position', '50%');
+    };
+
+    galleryItems.forEach((item) => {
+        item.addEventListener('click', () => openComparison(item));
     });
+
+    const moveComparison = (direction) => {
+        const visibleItems = Array.from(galleryItems).filter((item) => !item.classList.contains('hide'));
+        const currentVisibleIndex = visibleItems.indexOf(galleryItems[activeGalleryIndex]);
+        const nextVisibleIndex = (currentVisibleIndex + direction + visibleItems.length) % visibleItems.length;
+        openComparison(visibleItems[nextVisibleIndex]);
+    };
+
+    previousBtn?.addEventListener('click', () => moveComparison(-1));
+    nextBtn?.addEventListener('click', () => moveComparison(1));
 }
 
 if (beforeImageSelect) {
