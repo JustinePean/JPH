@@ -3,12 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Justine Pean Huyo-a | Photo Retoucher</title>
+    <title>JPH Photo Editing | Professional Real Estate, Architecture & Portrait Editing</title>
+    <meta name="description" content="Professional photo editing for real estate, architecture, virtual staging and portraits. Based in Cebu, Philippines and available for clients worldwide.">
+    <meta property="og:title" content="JPH Photo Editing | Professional Photo Editing Studio">
+    <meta property="og:description" content="Transform raw photographs into polished, professional and market-ready images.">
+    <meta property="og:type" content="website">
+    <meta name="keywords" content="photo editing, real estate photography, portrait retouching, architectural editing, virtual staging, image enhancement, professional editing">
+    <meta name="author" content="Justine Pean Huyo-a">
+    <meta name="theme-color" content="#ffffff">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "JPH Photo Editing",
+        "image": "images/architecturalafter1.jpg",
+        "description": "Professional photo editing for real estate, architecture, virtual staging and portraits. Based in Cebu, Philippines and available for clients worldwide.",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Cebu",
+            "addressCountry": "PH"
+        },
+        "telephone": "+639912238610",
+        "email": "justinepeandh@gmail.com",
+        "url": "https://justinepean.github.io/JPH/",
+        "sameAs": [
+            "https://www.linkedin.com/in/justine-pean-huyo-a-06b6441bb/",
+            "https://wa.me/+639912238610"
+        ],
+        "priceRange": "$0.75 - $15",
+        "servesCuisine": "Professional Photo Editing Services"
+    }
+    </script>
+    
     <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
 </head>
-<body oncontextmenu="return false;">
+<body>
 
+    <!-- STICKY NAVIGATION -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo">JPH</a>
@@ -22,128 +56,535 @@
                 <span></span>
             </button>
             <div class="nav-links">
-                <a href="work.html">Work</a>
-                <a href="pricing.html">Pricing</a>
-                <a href="mailto:justinepeandh@gmail.com">Contact</a>
+                <a href="#home">Home</a>
+                <a href="#services">Services</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#about">About</a>
+                <a href="#process">Process</a>
+                <a href="#contact">Contact</a>
+                <a href="mailto:justinepeandh@gmail.com" class="btn btn-nav">Get a Quote</a>
             </div>
         </div>
     </nav>
     <div class="scroll-progress"></div>
 
-    <main class="hero">
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
         <div class="hero-container">
             <div class="hero-text">
-                <p class="subtitle">Hello, I'm</p>
-                <h1>Justine</h1>
-                <p class="description">
-                    Dedicated to elevating visual narratives through high-end retouching and professional color grading. I translate raw captures into refined, high-impact imagery that resonates.
-                </p>
+                <p class="subtitle">JPH Photo Editing</p>
+                <h1>Professional Photo Editing for Real Estate, Architecture & Portraits</h1>
+                <p class="description">Turning raw photographs into polished, professional and market-ready images.</p>
                 <div class="cta-container">
-                    <a href="work.html" class="btn">Previous Work</a>
-                    <a href="mailto:justinepeandh@gmail.com" class="btn btn-secondary">Get In Touch</a>
+                    <a href="#portfolio" class="btn btn-primary">View Portfolio</a>
+                    <a href="mailto:justinepeandh@gmail.com?subject=Get%20a%20Quote" class="btn btn-secondary">Get a Quote</a>
                 </div>
             </div>
             <div class="hero-image">
                 <div class="image-wrapper">
-                    <img src="images/hero-portrait.png" alt="Justine Pean Huyo-a">
+                    <img src="images/architecturalafter1.jpg" alt="Professional Real Estate Photo Editing">
                 </div>
             </div>
         </div>
         <div class="scroll-indicator" aria-hidden="true"></div>
-    </main>
+    </section>
 
-    <section class="about-section">
-        <div class="about-container">
-            <div class="about-visual">
-                <div class="image-wrapper about-image-wrapper">
-                    <img src="images/hero-portrait.png" alt="Justine Pean Huyo-a">
-                </div>
+    <!-- SELECTED WORK PREVIEW -->
+    <section class="selected-work">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Selected Work</h2>
+                <p class="section-subtitle">A selection of professional image editing and retouching projects.</p>
             </div>
-            <div class="about-text">
-                <p class="subtitle">About me</p>
-                <h2>Photo Editor</h2>
-                <p>
-                    I’m Justine, a Cebu-based Real Estate Photo Editor with 3 years of experience transforming property photos into premium visual assets.
-                </p>
-                <p>
-                    Holding a degree/background in Information Technology, I blend a sharp eye for detail with strong technical problem-solving skills. My career began in fast-paced retail and food service environments, which shaped my strong work ethic and commitment to client satisfaction.
-                </p>
-                <p>
-                    I’m dedicated to delivering crisp, vibrant, and market-ready images that help you sell faster. Off the clock, I stay sharp and energized by lifting weights and staying active.
-                </p>
-                <div class="about-contact">
-                    <a href="mailto:justinepeandh@gmail.com" class="contact-link" aria-label="Email">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                    </a>
-                    <a href="https://www.linkedin.com/in/justine-pean-huyo-a-06b6441bb/" target="_blank" class="contact-link" aria-label="LinkedIn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                    </a>
-                    <a href="https://wa.me/+639912238610" target="_blank" class="contact-link" aria-label="WhatsApp">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                    </a>
+            <div class="work-preview-grid">
+                <div class="work-preview-item work-preview-real-estate">
+                    <img src="images/architecturalafter1.jpg" alt="Real Estate Photo Editing">
+                    <div class="work-preview-overlay">
+                        <h3>Real Estate</h3>
+                        <p>Enhanced property images</p>
+                    </div>
+                </div>
+                <div class="work-preview-item work-preview-virtual-staging">
+                    <img src="images/vsafter1.jpg" alt="Virtual Staging">
+                    <div class="work-preview-overlay">
+                        <h3>Virtual Staging</h3>
+                        <p>Transform vacant spaces</p>
+                    </div>
+                </div>
+                <div class="work-preview-item work-preview-architecture">
+                    <img src="images/architecturalafter2.jpg" alt="Architecture Photo Editing">
+                    <div class="work-preview-overlay">
+                        <h3>Architecture</h3>
+                        <p>Precise perspective correction</p>
+                    </div>
+                </div>
+                <div class="work-preview-item work-preview-portrait">
+                    <img src="images/portraitafter1.jpg" alt="Portrait Retouching">
+                    <div class="work-preview-overlay">
+                        <h3>Portrait</h3>
+                        <p>Professional retouching</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="services-section">
-        <div class="services-container">
-            <h2 class="services-title reveal-on-scroll">Services</h2>
-            <div class="services-cards">
-                <div class="service-card">
-                    <div class="service-icon service-icon-arch"></div>
-                    <h3 class="service-name">Architectural</h3>
-                    <p class="service-desc">Expert lens correction, color balancing, and perspective adjustments for property photos.</p>
+    <!-- BEFORE & AFTER SECTION -->
+    <section class="before-after-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>See The Difference</h2>
+                <p class="section-subtitle">Professional editing designed to enhance the image while keeping the result natural and realistic.</p>
+            </div>
+            <div class="before-after-grid">
+                <div class="before-after-item" data-before="images/architecturalbefore1.jpg" data-after="images/architecturalafter1.jpg">
+                    <div class="comparison-slider">
+                        <img src="images/architecturalafter1.jpg" alt="After - Real Estate Enhancement" class="comparison-after">
+                        <div class="comparison-before" style="width: 50%;">
+                            <img src="images/architecturalbefore1.jpg" alt="Before - Real Estate Enhancement">
+                        </div>
+                        <input type="range" min="0" max="100" value="50" class="comparison-range" aria-label="Before/After Comparison">
+                        <div class="comparison-labels">
+                            <span class="label-before">Before</span>
+                            <span class="label-after">After</span>
+                        </div>
+                    </div>
+                    <p class="comparison-title">Real Estate Enhancement</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon service-icon-portrait"></div>
-                    <h3 class="service-name">Portrait</h3>
-                    <p class="service-desc">Skin retouching, blemish removal, color grading, and enhancing professional portraits.</p>
+                <div class="before-after-item" data-before="images/architecturalbefore2.jpg" data-after="images/architecturalafter2.jpg">
+                    <div class="comparison-slider">
+                        <img src="images/architecturalafter2.jpg" alt="After - Architectural Editing" class="comparison-after">
+                        <div class="comparison-before" style="width: 50%;">
+                            <img src="images/architecturalbefore2.jpg" alt="Before - Architectural Editing">
+                        </div>
+                        <input type="range" min="0" max="100" value="50" class="comparison-range" aria-label="Before/After Comparison">
+                        <div class="comparison-labels">
+                            <span class="label-before">Before</span>
+                            <span class="label-after">After</span>
+                        </div>
+                    </div>
+                    <p class="comparison-title">Architectural Correction</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon service-icon-staging"></div>
-                    <h3 class="service-name">Virtual Staging</h3>
-                    <p class="service-desc">Digital furniture placement, interior styling, and scene enhancements to showcase a property.</p>
+                <div class="before-after-item" data-before="images/portraitbefore1.jpg" data-after="images/portraitafter1.jpg">
+                    <div class="comparison-slider">
+                        <img src="images/portraitafter1.jpg" alt="After - Portrait Retouching" class="comparison-after">
+                        <div class="comparison-before" style="width: 50%;">
+                            <img src="images/portraitbefore1.jpg" alt="Before - Portrait Retouching">
+                        </div>
+                        <input type="range" min="0" max="100" value="50" class="comparison-range" aria-label="Before/After Comparison">
+                        <div class="comparison-labels">
+                            <span class="label-before">Before</span>
+                            <span class="label-after">After</span>
+                        </div>
+                    </div>
+                    <p class="comparison-title">Portrait Retouching</p>
+                </div>
+                <div class="before-after-item" data-before="images/vsbefore1.jpg" data-after="images/vsafter1.jpg">
+                    <div class="comparison-slider">
+                        <img src="images/vsafter1.jpg" alt="After - Virtual Staging" class="comparison-after">
+                        <div class="comparison-before" style="width: 50%;">
+                            <img src="images/vsbefore1.jpg" alt="Before - Virtual Staging">
+                        </div>
+                        <input type="range" min="0" max="100" value="50" class="comparison-range" aria-label="Before/After Comparison">
+                        <div class="comparison-labels">
+                            <span class="label-before">Before</span>
+                            <span class="label-after">After</span>
+                        </div>
+                    </div>
+                    <p class="comparison-title">Virtual Staging</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="testimonial-section">
-        <div class="testimonial-container reveal-on-scroll">
-            <div class="testimonial-client">
-                <div class="testimonial-img-wrapper">
-                    <img src="images/client1.jpg" alt="Client photo" class="testimonial-img">
+    <!-- SERVICES SECTION -->
+    <section class="services-section" id="services">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Services</h2>
+                <p class="section-subtitle">Professional post-production for photographers, property professionals and creatives.</p>
+            </div>
+
+            <!-- Real Estate Photo Editing -->
+            <div class="service-group">
+                <div class="service-group-header">
+                    <h3>Real Estate Photo Editing</h3>
+                    <p>Clean, natural and market-ready property images designed to showcase spaces at their best.</p>
+                </div>
+                <div class="service-group-features">
+                    <span class="service-feature">HDR / Exposure Blending</span>
+                    <span class="service-feature">Natural Image Enhancement</span>
+                    <span class="service-feature">Window Pull</span>
+                    <span class="service-feature">Color Correction</span>
+                    <span class="service-feature">White Balance</span>
+                    <span class="service-feature">Sky Replacement</span>
+                    <span class="service-feature">Lawn Enhancement</span>
+                    <span class="service-feature">Object Removal</span>
+                    <span class="service-feature">Perspective Correction</span>
+                    <span class="service-feature">Day-to-Dusk</span>
+                    <span class="service-feature">Interior Enhancement</span>
+                    <span class="service-feature">Exterior Enhancement</span>
                 </div>
             </div>
-            <div class="testimonial-content">
-                <div class="testimonial-rating">
-                    <span class="testimonial-stars">★★★★★</span>
-                    <span class="testimonial-score">5.0</span>
+
+            <!-- Virtual Staging -->
+            <div class="service-group">
+                <div class="service-group-header">
+                    <h3>Virtual Staging</h3>
+                    <p>Transform vacant spaces into attractive, realistic and professionally furnished interiors.</p>
                 </div>
-                <blockquote class="testimonial-quote">
-                    <p>"Justine did a fantastic job for me!</p>
-                    <p>I gave him some pictures in the fashion industry (Man Suits) which are a bit hard to do even if you shot it in a studio, as it is hard to get close to the natural colour but Justine did it!</p>
-                    <p>He was available whenever we needed to change or tweak something! The communication was amazing!</p>
-                    <p>I highly recommend Justine"</p>
-                </blockquote>
-                <div class="testimonial-meta">
-                    <span class="testimonial-badge">Clear Communicator</span>
+                <div class="service-group-features">
+                    <span class="service-feature">Virtual Furniture</span>
+                    <span class="service-feature">Interior Styling</span>
+                    <span class="service-feature">Room Enhancement</span>
+                    <span class="service-feature">Furniture Replacement</span>
+                    <span class="service-feature">Decluttering</span>
+                    <span class="service-feature">Empty Room Transformation</span>
+                </div>
+            </div>
+
+            <!-- Architectural Editing -->
+            <div class="service-group">
+                <div class="service-group-header">
+                    <h3>Architectural Editing</h3>
+                    <p>Precise architectural editing that preserves lines, proportions, materials and design details.</p>
+                </div>
+                <div class="service-group-features">
+                    <span class="service-feature">Perspective Correction</span>
+                    <span class="service-feature">Vertical Correction</span>
+                    <span class="service-feature">Lens Correction</span>
+                    <span class="service-feature">Exposure Blending</span>
+                    <span class="service-feature">Interior / Exterior Enhancement</span>
+                    <span class="service-feature">Color Balancing</span>
+                    <span class="service-feature">Detail Retouching</span>
+                </div>
+            </div>
+
+            <!-- Portrait Retouching -->
+            <div class="service-group">
+                <div class="service-group-header">
+                    <h3>Portrait Retouching</h3>
+                    <p>Refined portrait retouching that enhances the subject while keeping the result natural.</p>
+                </div>
+                <div class="service-group-features">
+                    <span class="service-feature">Skin Retouching</span>
+                    <span class="service-feature">Blemish Removal</span>
+                    <span class="service-feature">Color Grading</span>
+                    <span class="service-feature">Dodge & Burn</span>
+                    <span class="service-feature">Hair Cleanup</span>
+                    <span class="service-feature">Clothing Cleanup</span>
+                    <span class="service-feature">Background Cleanup</span>
+                    <span class="service-feature">Professional Retouching</span>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- WHY JPH SECTION -->
+    <section class="why-jph">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Why Work With JPH?</h2>
+            </div>
+            <div class="why-jph-grid">
+                <div class="why-jph-card reveal-on-scroll">
+                    <div class="why-jph-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="20" cy="20" r="18" opacity="0.3"></circle>
+                            <path d="M12 20l4 4 12-12"></path>
+                        </svg>
+                    </div>
+                    <h3>Consistent Quality</h3>
+                    <p>Every image receives careful attention to color, exposure, composition and detail.</p>
+                </div>
+                <div class="why-jph-card reveal-on-scroll">
+                    <div class="why-jph-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="20" cy="20" r="18" opacity="0.3"></circle>
+                            <path d="M12 20l4 4 12-12"></path>
+                        </svg>
+                    </div>
+                    <h3>Natural Results</h3>
+                    <p>Professional editing should enhance the photograph—not make it look artificial.</p>
+                </div>
+                <div class="why-jph-card reveal-on-scroll">
+                    <div class="why-jph-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="20" cy="20" r="18" opacity="0.3"></circle>
+                            <path d="M12 20l4 4 12-12"></path>
+                        </svg>
+                    </div>
+                    <h3>Detail-Focused</h3>
+                    <p>Small details matter. I carefully refine the elements that make an image feel complete.</p>
+                </div>
+                <div class="why-jph-card reveal-on-scroll">
+                    <div class="why-jph-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="20" cy="20" r="18" opacity="0.3"></circle>
+                            <path d="M12 20l4 4 12-12"></path>
+                        </svg>
+                    </div>
+                    <h3>Reliable Communication</h3>
+                    <p>Clear communication and attention to your editing requirements from start to finish.</p>
+                </div>
+                <div class="why-jph-card reveal-on-scroll">
+                    <div class="why-jph-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="20" cy="20" r="18" opacity="0.3"></circle>
+                            <path d="M12 20l4 4 12-12"></path>
+                        </svg>
+                    </div>
+                    <h3>Professional Workflow</h3>
+                    <p>Organized file handling, consistent editing and efficient project delivery.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO SECTION -->
+    <section class="portfolio-section" id="portfolio">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Portfolio</h2>
+                <p class="section-subtitle">Explore our complete portfolio of professional editing work across all categories.</p>
+            </div>
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="real-estate">Real Estate</button>
+                <button class="filter-btn" data-filter="virtual-staging">Virtual Staging</button>
+                <button class="filter-btn" data-filter="architecture">Architecture</button>
+                <button class="filter-btn" data-filter="portrait">Portrait</button>
+            </div>
+            <div class="portfolio-grid">
+                <!-- Real Estate -->
+                <div class="portfolio-item" data-category="real-estate" data-before="images/architecturalbefore1.jpg, images/architecturalbefore1-1.jpg, images/architecturalbefore1-2.jpg, images/architecturalbefore1-3.jpg" data-after="images/architecturalafter1.jpg">
+                    <img src="images/architecturalafter1.jpg" alt="Real Estate Editing 1" loading="lazy">
+                    <div class="portfolio-overlay"><span>View</span></div>
+                </div>
+                <div class="portfolio-item" data-category="real-estate" data-before="images/architecturalbefore2.jpg, images/architecturalbefore2-1.jpg, images/architecturalbefore2-2.jpg, images/architecturalbefore2-3.jpg, images/architecturalbefore2-4.jpg, images/architecturalbefore2-5.jpg" data-after="images/architecturalafter2.jpg">
+                    <img src="images/architecturalafter2.jpg" alt="Real Estate Editing 2" loading="lazy">
+                    <div class="portfolio-overlay"><span>View</span></div>
+                </div>
+                <div class="portfolio-item" data-category="real-estate" data-before="images/architecturalbefore3.jpg, images/architecturalbefore3-1.jpg, images/architecturalbefore3-2.jpg, images/architecturalbefore3-3.jpg, images/architecturalbefore3-4.jpg, images/architecturalbefore3-5.jpg, images/architecturalbefore3-6.jpg" data-after="images/architecturalafter3.jpg">
+                    <img src="images/architecturalafter3.jpg" alt="Real Estate Editing 3" loading="lazy">
+                    <div class="portfolio-overlay"><span>View</span></div>
+                </div>
+                <div class="portfolio-item" data-category="real-estate" data-before="images/architecturalbefore4.jpg, images/architecturalbefore4-1.jpg, images/architecturalbefore4-2.jpg, images/architecturalbefore4-3.jpg, images/architecturalbefore4-4.jpg, images/architecturalbefore4-5.jpg" data-after="images/architecturalafter4.jpg">
+                    <img src="images/architecturalafter4.jpg" alt="Real Estate Editing 4" loading="lazy">
+                    <div class="portfolio-overlay"><span>View</span></div>
+                </div>
+                <div class="portfolio-item" data-category="real-estate" data-before="images/architecturalbefore5.jpg, images/architecturalbefore5-1.jpg, images/architecturalbefore5-2.jpg" data-after="images/architecturalafter5.jpg">
+                    <img src="images/architecturalafter5.jpg" alt="Real Estate Editing 5" loading="lazy">
+                    <div class="portfolio-overlay"><span>View</span></div>
+                </div>
+
+                <!-- Virtual Staging -->
+                <div class="portfolio-item" data-category="virtual-staging" data-before="images/vsbefore1.jpg" data-after="images/vsafter1.jpg">
+                    <img src="images/vsafter1.jpg" alt="Virtual Staging 1" loading="lazy">
+                    <div class="portfolio-overlay"><span>View</span></div>
+                </div>
+                <div class="portfolio-item" data-category="virtual-staging" data-before="images/vsbefore2.jpg" data-after="images/vsafter2.jpg">
+                    <img src="images/vsafter2.jpg" alt="Virtual Staging 2" loading="lazy">
+                    <div class="portfolio-overlay"><span>View</span></div>
+                </div>
+
+                <!-- Architecture -->
+                <div class="portfolio-item" data-category="architecture" data-before="images/lifestylebefore1.jpg, images/lifestylebefore1-1.jpg, images/lifestylebefore1-2.jpg, images/lifestylebefore1-3.jpg, images/lifestylebefore1-4.jpg, images/lifestylebefore1-5.jpg, images/lifestylebefore1-6.jpg, images/lifestylebefore1-7.jpg" data-after="images/lifestyleafter1.jpg">
+                    <img src="images/lifestyleafter1.jpg" alt="Lifestyle/Architecture 1" loading="lazy">
+                    <div class="portfolio-overlay"><span>View</span></div>
+                </div>
+                <div class="portfolio-item" data-category="architecture" data-before="images/lifestylebefore2.jpg, images/lifestylebefore2-1.jpg, images/lifestylebefore2-2.jpg, images/lifestylebefore2-3.jpg, images/lifestylebefore2-4.jpg, images/lifestylebefore2-5.jpg, images/lifestylebefore2-6.jpg, images/lifestylebefore2-7.jpg, images/lifestylebefore2-8.jpg, images/lifestylebefore2-9.jpg, images/lifestylebefore2-10.jpg, images/lifestylebefore2-11.jpg, images/lifestylebefore2-12.jpg, images/lifestylebefore2-13.jpg, images/lifestylebefore2-14.jpg" data-after="images/lifestyleafter2.jpg">
+                    <img src="images/lifestyleafter2.jpg" alt="Lifestyle/Architecture 2" loading="lazy">
+                    <div class="portfolio-overlay"><span>View</span></div>
+                </div>
+                <div class="portfolio-item" data-category="architecture" data-before="images/lifestylebefore3.jpg, images/lifestylebefore3-1.jpg" data-after="images/lifestyleafter3.jpg">
+                    <img src="images/lifestyleafter3.jpg" alt="Lifestyle/Architecture 3" loading="lazy">
+                    <div class="portfolio-overlay"><span>View</span></div>
+                </div>
+                <div class="portfolio-item" data-category="architecture" data-before="images/lifestylebefore4.jpg, images/lifestylebefore4-1.jpg" data-after="images/lifestyleafter4.jpg">
+                    <img src="images/lifestyleafter4.jpg" alt="Lifestyle/Architecture 4" loading="lazy">
+                    <div class="portfolio-overlay"><span>View</span></div>
+                </div>
+
+                <!-- Portrait -->
+                <div class="portfolio-item" data-category="portrait" data-before="images/portraitbefore1.jpg" data-after="images/portraitafter1.jpg">
+                    <img src="images/portraitafter1.jpg" alt="Portrait 1" loading="lazy">
+                    <div class="portfolio-overlay"><span>View</span></div>
+                </div>
+                <div class="portfolio-item" data-category="portrait" data-before="images/portraitbefore2.jpg" data-after="images/portraitafter2.jpg">
+                    <img src="images/portraitafter2.jpg" alt="Portrait 2" loading="lazy">
+                    <div class="portfolio-overlay"><span>View</span></div>
+                </div>
+                <div class="portfolio-item" data-category="portrait" data-before="images/portraitbefore3.jpg" data-after="images/portraitafter3.jpg">
+                    <img src="images/portraitafter3.jpg" alt="Portrait 3" loading="lazy">
+                    <div class="portfolio-overlay"><span>View</span></div>
+                </div>
+                <div class="portfolio-item" data-category="portrait" data-before="images/portraitbefore4.jpg" data-after="images/portraitafter4.jpg">
+                    <img src="images/portraitafter4.jpg" alt="Portrait 4" loading="lazy">
+                    <div class="portfolio-overlay"><span>View</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="about-section" id="about">
+        <div class="section-container">
+            <div class="about-grid">
+                <div class="about-visual">
+                    <div class="image-wrapper about-image-wrapper">
+                        <img src="images/hero-portrait.png" alt="Justine Pean Huyo-a, Photo Editor">
+                    </div>
+                </div>
+                <div class="about-text">
+                    <h2>About JPH</h2>
+                    <p>I'm Justine, a professional photo editor based in Cebu, Philippines, specializing in real estate, architectural and portrait retouching.</p>
+                    <p>With over 3 years of professional editing experience and a background in Information Technology, I combine technical precision with a strong eye for composition, color and detail.</p>
+                    <p>My goal is simple: to transform raw photographs into clean, polished and professional images that help photographers, businesses and creatives present their work at its best.</p>
+                    <div class="about-contact">
+                        <a href="mailto:justinepeandh@gmail.com" class="contact-link" aria-label="Email">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/justine-pean-huyo-a-06b6441bb/" target="_blank" class="contact-link" aria-label="LinkedIn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        </a>
+                        <a href="https://wa.me/+639912238610" target="_blank" class="contact-link" aria-label="WhatsApp">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS SECTION -->
+    <section class="process-section" id="process">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>How It Works</h2>
+                <p class="section-subtitle">A simple 3-step workflow for professional photo editing.</p>
+            </div>
+            <div class="process-grid">
+                <div class="process-step reveal-on-scroll">
+                    <div class="process-number">01</div>
+                    <h3>Send Your Photos</h3>
+                    <p>Send your images and let me know your editing requirements.</p>
+                </div>
+                <div class="process-step reveal-on-scroll">
+                    <div class="process-number">02</div>
+                    <h3>I Edit</h3>
+                    <p>Your images are professionally edited according to your preferred style and specifications.</p>
+                </div>
+                <div class="process-step reveal-on-scroll">
+                    <div class="process-number">03</div>
+                    <h3>Review & Delivery</h3>
+                    <p>Review the finished work and receive your final high-resolution files.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section class="testimonials-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>What Clients Say</h2>
+            </div>
+            <div class="testimonial-container reveal-on-scroll">
+                <div class="testimonial-client">
+                    <div class="testimonial-img-wrapper">
+                        <img src="images/client1.jpg" alt="Client testimonial photo" class="testimonial-img">
+                    </div>
+                </div>
+                <div class="testimonial-content">
+                    <div class="testimonial-rating">
+                        <span class="testimonial-stars">★★★★★</span>
+                        <span class="testimonial-score">5.0</span>
+                    </div>
+                    <blockquote class="testimonial-quote">
+                        <p>"Justine did a fantastic job for me!</p>
+                        <p>I gave him some pictures in the fashion industry (Man Suits) which are a bit hard to do even if you shot it in a studio, as it is hard to get close to the natural colour but Justine did it!</p>
+                        <p>He was available whenever we needed to change or tweak something! The communication was amazing!</p>
+                        <p>I highly recommend Justine"</p>
+                    </blockquote>
+                    <div class="testimonial-meta">
+                        <span class="testimonial-badge">Clear Communicator</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT CTA SECTION -->
+    <section class="contact-cta" id="contact">
+        <div class="section-container">
+            <div class="contact-cta-inner">
+                <h2>Have a Project in Mind?</h2>
+                <p>Whether you need real estate photo editing, virtual staging, architectural retouching or portrait enhancement, I'd love to hear about your project.</p>
+                <div class="cta-container">
+                    <a href="mailto:justinepeandh@gmail.com?subject=Get%20a%20Quote" class="btn btn-primary">Get a Quote</a>
+                </div>
+                <div class="contact-methods">
+                    <a href="mailto:justinepeandh@gmail.com" class="contact-method-link">justinepeandh@gmail.com</a>
+                    <a href="https://wa.me/+639912238610" target="_blank" class="contact-method-link">+63 991 223 8610</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
     <footer class="footer reveal-on-scroll">
-        <p>&copy; 2026 Justine Pean Huyo-a. All rights reserved.</p>
+        <div class="section-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>JPH Photo Editing</h3>
+                    <p>Professional Photo Editing for Real Estate, Architecture & Portraits.</p>
+                </div>
+                <nav class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#services">Services</a>
+                    <a href="#portfolio">Portfolio</a>
+                    <a href="#about">About</a>
+                    <a href="#process">Process</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 JPH Photo Editing. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
 
+    <!-- BACK TO TOP BUTTON -->
     <button class="back-to-top" aria-label="Back to top">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="18 15 12 9 6 15"></polyline>
         </svg>
     </button>
+
+    <!-- PORTFOLIO MODAL (for before/after comparisons) -->
+    <div id="modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <button class="close-btn" aria-label="Close comparison modal">&times;</button>
+            <div class="modal-header">
+                <button id="comparison-prev" class="comparison-nav-btn" aria-label="Previous comparison">&lt;</button>
+                <button id="comparison-next" class="comparison-nav-btn" aria-label="Next comparison">&gt;</button>
+            </div>
+            <div id="comparison-wrapper" class="comparison-wrapper" style="--position: 50%;">
+                <img id="modal-after" src="" alt="After" class="comparison-after-img">
+                <div class="comparison-before-img-container">
+                    <img id="modal-before" src="" alt="Before" class="comparison-before-img">
+                </div>
+                <input id="slider" type="range" min="0" max="100" value="50" class="comparison-slider-input">
+            </div>
+            <div class="before-selector">
+                <label for="before-image-select">Select Before Image:</label>
+                <select id="before-image-select">
+                    <option value="">Select...</option>
+                </select>
+            </div>
+        </div>
+    </div>
 
     <script src="js/script.js"></script>
 
