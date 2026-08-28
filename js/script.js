@@ -143,6 +143,18 @@ if (galleryItems.length > 0) {
 
     previousBtn?.addEventListener('click', () => moveComparison(-1));
     nextBtn?.addEventListener('click', () => moveComparison(1));
+
+    window.addEventListener('keydown', (e) => {
+        if (modal && modal.style.display === 'flex') {
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                moveComparison(-1);
+            } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                moveComparison(1);
+            }
+        }
+    });
 }
 
 if (beforeImageSelect) {
