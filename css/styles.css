@@ -1225,6 +1225,69 @@ body.dark-mode .comparison-nav {
     color: var(--subtle);
 }
 
+/* 7. PRICING PAGE */
+.pricing-page { --pricing-accent: #7d8870; --pricing-line: rgba(51, 51, 51, 0.16); }
+.pricing-page .pricing-main { overflow: hidden; }
+.pricing-hero, .pricing-section, .pricing-final-cta { padding: 150px 5% 120px; }
+.pricing-hero { min-height: 78vh; display: flex; align-items: center; background: linear-gradient(135deg, var(--bg-alt), var(--bg) 72%); }
+.pricing-hero-inner, .pricing-section-inner, .pricing-final-inner { width: 100%; max-width: 1200px; margin: 0 auto; }
+.pricing-kicker, .pricing-section-label { color: var(--pricing-accent); font-size: 0.72rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; }
+.pricing-hero h1 { max-width: 800px; margin: 22px 0 28px; font-family: 'Montserrat', sans-serif; font-size: clamp(3.6rem, 9vw, 8.2rem); line-height: 0.91; letter-spacing: -5px; font-weight: 800; }
+.pricing-lead { max-width: 610px; color: var(--subtle); font-size: 1.15rem; margin-bottom: 38px; }
+.pricing-hero .cta-container { opacity: 1; animation: none; }
+.pricing-section { background: var(--bg); }
+.pricing-section.alt-section, .pricing-final-cta { background: var(--bg-alt); }
+.pricing-section-heading { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 50px; }
+.pricing-section h2, .pricing-final-cta h2 { max-width: 720px; margin-top: 16px; font-family: 'Montserrat', sans-serif; font-size: clamp(2rem, 4vw, 4rem); line-height: 1; letter-spacing: -2px; }
+.pricing-note, .pricing-copy, .pricing-final-copy { color: var(--subtle); max-width: 600px; }
+.pricing-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.pricing-card { position: relative; display: flex; flex-direction: column; min-height: 570px; padding: 34px 30px 30px; border: 1px solid var(--pricing-line); background: var(--bg-alt); transition: transform 0.5s var(--ease), border-color 0.5s var(--ease), box-shadow 0.5s var(--ease); }
+.pricing-card:hover { transform: translateY(-8px); box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08); }
+.pricing-card.featured { transform: translateY(-8px); border: 2px solid var(--pricing-accent); background: var(--bg); }
+.pricing-card-tag { position: absolute; top: -1px; right: 24px; padding: 8px 12px; background: var(--pricing-accent); color: #fff; font-size: 0.62rem; font-weight: 700; letter-spacing: 1.5px; }
+.pricing-card h3, .specialty-item h3, .feature-block h3, .process-step h3 { font-family: 'Montserrat', sans-serif; font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; }
+.pricing-card h3 { margin-bottom: 18px; }
+.pricing-card-price { font-family: 'Montserrat', sans-serif; font-size: 2.6rem; font-weight: 800; letter-spacing: -2px; }
+.pricing-card-price span { color: var(--subtle); font-family: 'Roboto', sans-serif; font-size: 0.72rem; font-weight: 500; letter-spacing: 1px; }
+.pricing-card-description { min-height: 58px; margin: 20px 0; color: var(--subtle); font-size: 0.95rem; }
+.pricing-card ul { list-style: none; border-top: 1px solid var(--pricing-line); padding-top: 18px; }
+.pricing-card li { margin-bottom: 9px; color: var(--subtle); font-size: 0.88rem; }
+.pricing-card li::before { content: '+'; color: var(--pricing-accent); margin-right: 9px; font-weight: 700; }
+.pricing-meta { display: flex; gap: 18px; margin-top: auto; padding-top: 24px; border-top: 1px solid var(--pricing-line); color: var(--subtle); font-size: 0.75rem; }
+.pricing-meta strong { display: block; margin-top: 4px; color: var(--text); font-size: 0.83rem; }
+.specialty-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--pricing-line); border-left: 1px solid var(--pricing-line); }
+.specialty-item { display: flex; justify-content: space-between; gap: 16px; padding: 22px 20px; border-right: 1px solid var(--pricing-line); border-bottom: 1px solid var(--pricing-line); }
+.specialty-item h3 { font-size: 0.76rem; letter-spacing: 1px; }
+.specialty-price { white-space: nowrap; color: var(--pricing-accent); font-family: 'Montserrat', sans-serif; font-size: 0.82rem; font-weight: 700; }
+.personal-service { display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start; }
+.feature-grid { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 48px; }
+.feature-block { padding-top: 20px; border-top: 1px solid var(--pricing-accent); }
+.feature-block h3 { margin-bottom: 10px; font-size: 0.78rem; }
+.feature-block p { color: var(--subtle); font-size: 0.9rem; }
+.discount-grid, .rush-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--pricing-line); border-left: 1px solid var(--pricing-line); }
+.discount-item, .rush-item { padding: 28px 24px; border-right: 1px solid var(--pricing-line); border-bottom: 1px solid var(--pricing-line); }
+.discount-item span, .rush-item span { display: block; color: var(--subtle); font-size: 0.76rem; letter-spacing: 1px; text-transform: uppercase; }
+.discount-item strong, .rush-item strong { display: block; margin-top: 14px; font-family: 'Montserrat', sans-serif; font-size: 1.5rem; }
+.pricing-section .pricing-note { margin-top: 22px; font-size: 0.82rem; }
+.test-edit { border-top: 1px solid var(--pricing-accent); border-bottom: 1px solid var(--pricing-accent); }
+.test-edit-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
+.test-edit h2 { max-width: 560px; }
+.test-edit-copy { color: var(--subtle); font-size: 1.05rem; }
+.test-edit-callout { margin-top: 28px; color: var(--text); font-family: 'Montserrat', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 2px; line-height: 2; }
+.test-edit .btn { margin-top: 32px; }
+.process-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; }
+.process-step { padding-top: 18px; border-top: 1px solid var(--pricing-line); }
+.process-number { display: block; margin-bottom: 28px; color: var(--pricing-accent); font-family: 'Montserrat', sans-serif; font-size: 1.8rem; font-weight: 800; }
+.process-step h3 { margin-bottom: 12px; }
+.process-step p { color: var(--subtle); font-size: 0.88rem; }
+.pricing-final-cta { text-align: center; }
+.pricing-final-inner { display: flex; flex-direction: column; align-items: center; }
+.pricing-final-cta h2 { max-width: 820px; }
+.pricing-final-copy { margin: 24px auto 32px; }
+.pricing-contacts { display: flex; gap: 24px; margin-top: 24px; color: var(--subtle); font-size: 0.84rem; }
+.pricing-contacts a:hover { color: var(--pricing-accent); }
+body.dark-mode .pricing-page { --pricing-accent: #a5b39a; --pricing-line: rgba(224, 224, 224, 0.2); }
+
 /* 7. RESPONSIVE */
 
 /* --- TABLET CORE (1024px and below) --- */
@@ -1367,4 +1430,28 @@ body.dark-mode .comparison-nav {
         width: 42px;
         height: 42px;
     }
+
+    .pricing-hero, .pricing-section, .pricing-final-cta { padding: 120px 5% 80px; }
+    .pricing-hero { min-height: 0; }
+    .pricing-hero h1 { font-size: clamp(3.2rem, 16vw, 5.5rem); letter-spacing: -3px; }
+    .pricing-lead { font-size: 1rem; }
+    .pricing-hero .cta-container { flex-direction: column; gap: 12px; }
+    .pricing-hero .btn, .test-edit .btn, .pricing-final-cta .btn { width: 100%; }
+    .pricing-section-heading { display: block; margin-bottom: 34px; }
+    .pricing-section-heading .pricing-note { margin-top: 24px; }
+    .pricing-cards { grid-template-columns: 1fr; gap: 28px; }
+    .pricing-card { min-height: 0; padding: 30px 24px 24px; }
+    .pricing-card.featured { transform: none; }
+    .specialty-grid { grid-template-columns: 1fr; }
+    .specialty-item { padding: 18px 16px; }
+    .personal-service, .test-edit-inner { display: flex; flex-direction: column; gap: 28px; }
+    .feature-grid { grid-template-columns: 1fr; gap: 24px; margin-top: 18px; }
+    .discount-grid, .rush-grid { grid-template-columns: repeat(2, 1fr); }
+    .discount-item, .rush-item { padding: 22px 16px; }
+    .discount-item strong, .rush-item strong { font-size: 1.2rem; }
+    .process-grid { grid-template-columns: 1fr; gap: 28px; }
+    .process-step { display: grid; grid-template-columns: 56px 1fr; column-gap: 12px; }
+    .process-number { grid-row: span 2; margin-bottom: 0; }
+    .process-step h3 { margin-bottom: 5px; }
+    .pricing-contacts { flex-direction: column; gap: 10px; text-align: center; }
 }
