@@ -335,9 +335,10 @@ body.dark-mode .moon-icon { display: none; }
     position: absolute;
     inset: 0;
     background-size: cover;
-    background-position: center;
+    background-position: left bottom;
     opacity: 0;
     animation: heroBgCrossfade 16s var(--ease) infinite;
+    transform-origin: bottom left;
     will-change: opacity, transform;
 }
 
