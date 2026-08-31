@@ -21,7 +21,6 @@ const progressBar = document.querySelector('.scroll-progress');
 const backToTopBtn = document.querySelector('.back-to-top');
 let activeGalleryIndex = -1;
 
-const heroImage = document.querySelector('.hero-image');
 const aboutSection = document.querySelector('.about-section');
 const aboutVisual = document.querySelector('.about-visual');
 const aboutText = document.querySelector('.about-text');
@@ -249,37 +248,21 @@ window.addEventListener('keydown', (e) => {
 // Check for Scroll-Driven Animations support
 const supportsScrollTimeline = window.CSS && CSS.supports('animation-timeline', 'view()');
 
-// 1. Hero Entrance Logic
-if (heroImage) {
-    const triggerHeroLoad = () => heroImage.classList.add('is-loaded');
-    if (document.readyState === 'complete') triggerHeroLoad();
-    else window.addEventListener('load', triggerHeroLoad);
-}
-
 // 2. Scroll-Based Parallax & Reveals
-if (heroImage || aboutSection) {
+if (aboutSection) {
     // 2. Parallax Scroll Logic
     let ticking = false;
     let windowHeight = window.innerHeight;
-    let isMobile = window.innerWidth <= 768;
 
     window.addEventListener('resize', () => {
         windowHeight = window.innerHeight;
-        isMobile = window.innerWidth <= 768;
     });
 
     window.addEventListener('scroll', () => {
         if (!ticking) {
             window.requestAnimationFrame(() => {
-                const scrolled = window.scrollY;
                 const aboutImageWrapper = aboutVisual?.querySelector('.about-image-wrapper');
                 const aboutImg = aboutVisual?.querySelector('img');
-
-                // Hero Parallax (Desktop/Tablet only)
-                if (heroImage && !isMobile && heroImage.classList.contains('is-loaded') && !supportsScrollTimeline) {
-                    heroImage.style.transform = `translateX(-${scrolled * 0.25}px)`;
-                    heroImage.style.opacity = Math.max(0, 1 - scrolled / 900);
-                }
 
                 // About Visual Parallax
                 const aboutRect = aboutSection ? aboutSection.getBoundingClientRect() : null;

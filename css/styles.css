@@ -317,9 +317,47 @@ body.dark-mode .moon-icon { display: none; }
     scroll-snap-stop: always;
     display: flex;
     align-items: center;
+    justify-content: center;
     padding: 160px 5% 100px;
-    background: var(--bg-alt);
     position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+/* Full-bleed transitioning background images */
+.hero-background {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.hero-bg-slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    animation: heroBgCrossfade 16s var(--ease) infinite;
+    will-change: opacity, transform;
+}
+
+.hero-bg-00 { background-image: url('../images/hero-image00.jpg'); }
+.hero-bg-01 { background-image: url('../images/hero-image01.jpg'); animation-delay: -8s; }
+
+@keyframes heroBgCrossfade {
+    0%   { opacity: 1; transform: scale(1); }
+    40%  { opacity: 1; transform: scale(1.06); }
+    50%  { opacity: 0; transform: scale(1.08); }
+    90%  { opacity: 0; transform: scale(1.08); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+/* Dark scrim to keep the centered hero text legible over the photos */
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.30) 50%, rgba(0, 0, 0, 0.55) 100%);
 }
 
 /* Scroll Indicator */
@@ -340,8 +378,8 @@ body.dark-mode .moon-icon { display: none; }
     display: block;
     width: 12px;
     height: 12px;
-    border-right: 2px solid var(--subtle);
-    border-bottom: 2px solid var(--subtle);
+    border-right: 2px solid rgba(255, 255, 255, 0.8);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.8);
     margin: 0 auto;
     transform: rotate(45deg);
     animation: bounce 2s infinite;
@@ -449,7 +487,7 @@ body.dark-mode .moon-icon { display: none; }
 }
 
 .hero-container {
-    max-width: 1200px;
+    max-width: 900px;
     margin: 0 auto;
     display: grid;
     transform-style: preserve-3d;
@@ -458,9 +496,10 @@ body.dark-mode .moon-icon { display: none; }
     animation: hero-3d-exit linear both;
     animation-timeline: --hero-scroll;
     animation-range: exit 0% exit 100%;
-    grid-template-columns: 1fr 1.15fr;
-    gap: 60px;
-    align-items: center;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    position: relative;
+    z-index: 2;
     will-change: transform, opacity;
 }
 
@@ -468,7 +507,7 @@ body.dark-mode .moon-icon { display: none; }
     text-transform: none;
     letter-spacing: 2px;
     font-size: 1rem;
-    color: var(--subtle);
+    color: rgba(255, 255, 255, 0.85);
     margin-bottom: 0px;
     display: block;
     font-weight: 600;
@@ -483,15 +522,16 @@ body.dark-mode .moon-icon { display: none; }
     font-weight: 800;
     letter-spacing: -2px;
     margin-bottom: 15px;
+    color: #ffffff;
     opacity: 0;
     animation: fadeInUp 1.2s var(--ease) 0.4s both;
 }
 
 .hero-text .description {
     font-size: 1.1rem;
-    color: var(--subtle);
-    max-width: 480px;
-    margin-bottom: 40px;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 640px;
+    margin: 0 auto 40px;
     opacity: 0;
     animation: fadeInUp 1.2s var(--ease) 0.6s both;
 }
@@ -528,6 +568,7 @@ body.dark-mode .image-wrapper:hover img {
 .cta-container { 
     display: flex; 
     gap: 20px; 
+    justify-content: center;
     opacity: 0;
     animation: fadeInUp 1.2s var(--ease) 0.8s both;
 }
@@ -547,30 +588,30 @@ body.dark-mode .image-wrapper:hover img {
 .btn-secondary { background: transparent; color: var(--text); }
 .btn:hover { background: var(--accent); color: #fff; transform: translateY(-3px); }
 
-/* Animation base styles */
-.hero-image {
-    opacity: 0;
-    transform: translateX(40px);
-    filter: blur(8px);
-    /* Transition removed in favor of CSS animation for coordinated entrance */
-    will-change: transform, opacity;
+/* Hero buttons: white on the photo background */
+.hero .btn {
+    background: #ffffff;
+    border-color: #ffffff;
+    color: #111111;
 }
 
-.hero-image.is-loaded {
-    animation: heroImageReveal 1.8s var(--ease) 0.5s both;
+.hero .btn:hover {
+    background: rgba(255, 255, 255, 0.88);
+    border-color: rgba(255, 255, 255, 0.88);
+    color: #111111;
+    transform: translateY(-3px);
 }
 
-@keyframes heroImageReveal {
-    0% {
-        opacity: 0;
-        transform: translateX(40px);
-        filter: blur(10px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-        filter: blur(0);
-    }
+.hero .btn-secondary {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.75);
+    color: #ffffff;
+}
+
+.hero .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #ffffff;
+    color: #ffffff;
 }
 
 @keyframes navEntrance {
@@ -1292,17 +1333,16 @@ body.dark-mode .pricing-page { --pricing-accent: #a5b39a; --pricing-line: rgba(2
 
 /* --- TABLET CORE (1024px and below) --- */
 @media (max-width: 1024px) {
-    .hero { height: auto; min-height: 70vh; padding: 140px 5% 60px; text-align: left; }
-    .hero-container { grid-template-columns: 1fr 1.15fr; gap: 40px; }
+    .hero { height: auto; min-height: 70vh; padding: 140px 5% 60px; text-align: center; }
+    .hero-container { grid-template-columns: 1fr; }
     .hero-text { max-width: none; margin: 0; }
-    .hero-text .description { margin: 0 0 30px 0; }
+    .hero-text .description { margin: 0 auto 30px; }
     .gallery {
         /* column-count: 2; */ /* Removed, replaced by grid */
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjust minmax for tablets */
         gap: 20px; /* Adjust gap for tablets */
     }
-    .cta-container { justify-content: flex-start; flex-wrap: nowrap; gap: 20px; }
-    .hero-image { position: static; opacity: 1; width: 100%; max-width: none; margin: 0; }
+    .cta-container { justify-content: center; flex-wrap: nowrap; gap: 20px; }
     .image-wrapper { padding-bottom: 0; aspect-ratio: 4/5; }
     .image-wrapper img { position: static; transform: none; height: 100%; width: 100%; }
 
@@ -1364,7 +1404,6 @@ body.dark-mode .pricing-page { --pricing-accent: #a5b39a; --pricing-line: rgba(2
     .hero-text h1 { font-size: 3.2rem; }
     .hero-text .description { margin: 0 auto 30px; }
     .cta-container { justify-content: center; }
-    .hero-image { display: none; }
 
     .work-header { padding-top: 110px; }
     .work-filters { gap: 8px; }
