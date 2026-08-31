@@ -1,5 +1,5 @@
 /**
- * Justine Pean Huyo-a Work Script
+ * Justine Pean Huyo-a Before & After Script
  * Handles the Before/After Comparison Modal
  */
 
@@ -164,7 +164,7 @@ if (beforeImageSelect) {
     });
 }
 
-// Work Filtering Logic
+// Before & After Filtering Logic
 const filterBtns = document.querySelectorAll('.filter-btn');
 if (filterBtns.length > 0) {
     // Function to reveal items with a staggered delay
