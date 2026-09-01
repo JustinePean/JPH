@@ -246,9 +246,9 @@ if (slider) {
 
 const homepageSliders = document.querySelectorAll('.comparison-slider .slider-input');
 homepageSliders.forEach((sliderInput) => {
-    const wrapper = sliderInput.closest('.comparison-wrapper');
+    const sliderWrapper = sliderInput.closest('.comparison-wrapper');
     sliderInput.addEventListener('input', (e) => {
-        wrapper.style.setProperty('--position', `${e.target.value}%`);
+        sliderWrapper.style.setProperty('--position', `${e.target.value}%`);
     });
 });
 
@@ -275,9 +275,8 @@ window.addEventListener('keydown', (e) => {
 // Check for Scroll-Driven Animations support
 const supportsScrollTimeline = window.CSS && CSS.supports('animation-timeline', 'view()');
 
-// 2. Scroll-Based Parallax & Reveals
+// Parallax scroll logic for the About section
 if (aboutSection) {
-    // 2. Parallax Scroll Logic
     let ticking = false;
     let windowHeight = window.innerHeight;
 
@@ -292,7 +291,7 @@ if (aboutSection) {
                 const aboutImg = aboutVisual?.querySelector('img');
 
                 // About Visual Parallax
-                const aboutRect = aboutSection ? aboutSection.getBoundingClientRect() : null;
+                const aboutRect = aboutSection.getBoundingClientRect();
                 
                 if (!supportsScrollTimeline && aboutRect && aboutVisual && aboutText) {
                     if (aboutRect.top < windowHeight && aboutRect.bottom > 0) {
@@ -337,8 +336,8 @@ if (serviceCards.length > 0) {
             }
         });
     }, {
-        threshold: 0.05, 
-        rootMargin: '0px 0px -10% 0px' 
+        threshold: 0.05,
+        rootMargin: '0px 0px -10% 0px'
     });
 
     serviceCards.forEach((card, index) => {
