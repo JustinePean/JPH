@@ -225,6 +225,15 @@ if (slider) {
     });
 }
 
+// Homepage Comparison Sliders Logic
+const homepageSliders = document.querySelectorAll('.comparison-slider .slider-input');
+homepageSliders.forEach((sliderInput) => {
+    const wrapper = sliderInput.closest('.comparison-wrapper');
+    sliderInput.addEventListener('input', (e) => {
+        wrapper.style.setProperty('--position', `${e.target.value}%`);
+    });
+});
+
 // Close Modal Logic
 const closeModal = () => {
     modal.style.display = 'none';
