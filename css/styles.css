@@ -38,6 +38,10 @@ body.dark-mode {
     --about-shadow: rgba(0, 0, 0, 0.6);
 }
 
+/* Alternating section background pattern (index.html) */
+.bg-light { background: var(--bg); }
+.bg-alt { background: var(--bg-alt); }
+
 html {
     scroll-behavior: smooth;
 }
@@ -394,7 +398,6 @@ body.dark-mode .moon-icon { display: none; }
 
 /* SERVICES SECTION */
 .services-section {
-    background: var(--bg);
     padding: 80px 5% 60px;
     display: flex;
     justify-content: center;
@@ -487,6 +490,144 @@ body.dark-mode .moon-icon { display: none; }
     margin-bottom: 0;
 }
 
+/* Mini comparison sliders inside service cards (reuses .comparison-slider styles) */
+.service-preview {
+    width: 100%;
+    margin: 0 0 24px;
+}
+
+/* Scale the slider handle and labels down for mini previews */
+.service-preview .slider-line::after {
+    width: 32px;
+    height: 32px;
+}
+
+.service-preview .slider-line::before {
+    width: 8px;
+    height: 8px;
+}
+
+.service-preview .label {
+    top: 10px;
+    font-size: 0.55rem;
+    letter-spacing: 1.5px;
+    padding: 3px 6px;
+}
+
+.service-preview .label-before {
+    left: 10px;
+}
+
+.service-preview .label-after {
+    right: 10px;
+}
+
+/* PRICING TEASER (index.html) */
+.pricing-teaser {
+    background: var(--bg-alt);
+    border-top: 1px solid rgba(51, 51, 51, 0.08);
+    border-bottom: 1px solid rgba(51, 51, 51, 0.08);
+    padding: 90px 5%;
+    text-align: center;
+}
+
+body.dark-mode .pricing-teaser {
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.pricing-teaser-inner {
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.pricing-teaser .subtitle {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--subtle);
+}
+
+.pricing-teaser-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: var(--text);
+    margin: 0 0 14px;
+}
+
+.pricing-teaser-price {
+    font-size: 1.1rem;
+    color: var(--subtle);
+    margin-bottom: 32px;
+}
+
+.pricing-teaser-price strong {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    color: var(--text);
+}
+
+/* HOW IT WORKS (index.html) — reuses .process-step styles from pricing.html */
+.how-it-works {
+    padding: 80px 5%;
+    /* Same design tokens the pricing page uses for its process steps */
+    --pricing-accent: #7d8870;
+    --pricing-line: rgba(51, 51, 51, 0.16);
+}
+
+body.dark-mode .how-it-works {
+    --pricing-line: rgba(255, 255, 255, 0.16);
+}
+
+.how-it-works-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.how-it-works .process-grid {
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 50px;
+    list-style: none;
+}
+
+/* CONTACT CTA (index.html) */
+.contact-cta {
+    padding: 100px 5% 90px;
+    text-align: center;
+}
+
+.contact-cta-inner {
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.contact-cta .subtitle {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--subtle);
+}
+
+.contact-cta .services-title {
+    margin-bottom: 14px;
+}
+
+.contact-cta-copy {
+    font-size: 1.05rem;
+    color: var(--subtle);
+    margin-bottom: 32px;
+}
+
+.contact-cta .about-contact {
+    justify-content: center;
+    margin-top: 28px;
+}
+
 .hero-container {
     max-width: 900px;
     margin: 0 auto;
@@ -537,6 +678,46 @@ body.dark-mode .moon-icon { display: none; }
     animation: fadeInUp 1.2s var(--ease) 0.6s both;
 }
 
+.hero-stats {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.65);
+    margin: -6px auto 14px;
+    opacity: 0;
+    animation: fadeInUp 1.2s var(--ease) 0.7s both;
+}
+
+/* Fast turnaround pill in the hero */
+.turnaround-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 999px;
+    backdrop-filter: blur(4px);
+    margin-bottom: 34px;
+    opacity: 0;
+    animation: fadeInUp 1.2s var(--ease) 0.75s both;
+}
+
+/* Each stat wraps as a whole chunk on mobile — never mid-word */
+.hero-stats .hero-stat {
+    white-space: nowrap;
+}
+
+.hero-stats .stat-divider {
+    margin: 0 12px;
+}
+
 .image-wrapper {
     position: relative;
     padding-bottom: 145%;
@@ -581,6 +762,7 @@ body.dark-mode .image-wrapper:hover img {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 2px;
+    text-decoration: none;
     border: 1px solid var(--text);
     background: var(--text);
     color: #fff;
@@ -589,14 +771,31 @@ body.dark-mode .image-wrapper:hover img {
 .btn-secondary { background: transparent; color: var(--text); }
 .btn:hover { background: var(--accent); color: #fff; transform: translateY(-3px); }
 
-/* Hero buttons: white on the photo background */
-.hero .btn {
+/* Primary CTA — defined once, used at every main conversion point */
+.btn-primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: var(--accent);
+    color: #fff;
+    opacity: 0.85;
+}
+
+body.dark-mode .btn-primary {
+    color: #000;
+}
+
+/* Hero secondary buttons: white on the photo background (primary keeps theme accent) */
+.hero .btn:not(.btn-primary) {
     background: #ffffff;
     border-color: #ffffff;
     color: #111111;
 }
 
-.hero .btn:hover {
+.hero .btn:not(.btn-primary):hover {
     background: rgba(255, 255, 255, 0.88);
     border-color: rgba(255, 255, 255, 0.88);
     color: #111111;
@@ -736,8 +935,7 @@ body.dark-mode .image-wrapper:hover img {
 
 /* Testimonial Section */
 .testimonial-section {
-    background: var(--bg-alt);
-    padding: 60px 5%;
+    padding: 80px 5%;
     display: flex;
     justify-content: center;
 }
@@ -842,7 +1040,6 @@ body.dark-mode .image-wrapper:hover img {
 
 /* BEFORE & AFTER SECTION (index.html) */
 .before-after-section {
-    background: var(--bg);
     padding: 80px 5% 60px;
     display: flex;
     justify-content: center;
@@ -958,6 +1155,11 @@ body.dark-mode .before-after-card:nth-child(even) {
     clip-path: inset(0 calc(100% - var(--position)) 0 0);
 }
 
+/* Top-aligned crop for vertical portrait photos (head & shoulders framing) */
+.comparison-slider .crop-top img {
+    object-position: center top;
+}
+
 .comparison-slider .slider-line {
     position: absolute;
     inset: 0 auto 0 var(--position);
@@ -1045,7 +1247,6 @@ body.dark-mode .before-after-card:nth-child(even) {
 
 .about-section {
     padding: 100px 5% 70px;
-    background: linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 100%);
 }
 
 .about-container {
@@ -1116,6 +1317,46 @@ body.dark-mode .before-after-card:nth-child(even) {
 
 .about-text p:last-child {
     margin-bottom: 0;
+}
+
+.about-list-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 24px 0 10px;
+}
+
+.about-list {
+    list-style: none;
+    margin: 0 0 24px;
+    padding: 0;
+    max-width: 620px;
+}
+
+.about-list li {
+    position: relative;
+    padding-left: 22px;
+    margin-bottom: 12px;
+    color: var(--subtle);
+    font-size: 1.02rem;
+    line-height: 1.6;
+}
+
+.about-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.65em;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+}
+
+.about-list strong {
+    color: var(--text);
+    font-weight: 600;
 }
 
 .about-contact {
