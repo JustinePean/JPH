@@ -565,6 +565,7 @@ body.dark-mode .btn-primary {
 
     .nav-links a {
         margin-left: 0;
+        padding: 10px 0; /* ~44px tap target with line-height */
         animation-duration: 0.4s;
     }
 
@@ -577,10 +578,12 @@ body.dark-mode .btn-primary {
 
     .btn { padding: 14px 22px; font-size: 0.65rem; }
 
+    .theme-toggle { padding: 12px; } /* 44x44 tap target */
+
     .back-to-top {
         bottom: 20px;
         right: 20px;
-        width: 42px;
-        height: 42px;
+        width: 44px;
+        height: 44px;
     }
 }

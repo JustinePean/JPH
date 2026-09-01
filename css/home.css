@@ -947,9 +947,17 @@ body.dark-mode .before-after-card:nth-child(even) {
     .hero { text-align: center; }
     .hero-container { grid-template-columns: 1fr; }
     .hero-text { max-width: 800px; margin: 0 auto; }
-    .hero-text h1 { font-size: 3.2rem; }
+    .hero-text h1 { font-size: clamp(2.4rem, 13vw, 3.2rem); }
     .hero-text .description { margin: 0 auto 30px; }
-    .cta-container { justify-content: center; }
+    .cta-container { justify-content: center; flex-wrap: wrap; gap: 12px; }
+
+    /* Stats wrap as whole chunks instead of overflowing narrow screens */
+    .hero-stats {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        row-gap: 2px;
+    }
 
     .about-section { padding: 100px 5% 60px; }
     .about-container {
