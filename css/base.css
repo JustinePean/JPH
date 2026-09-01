@@ -498,6 +498,21 @@ body.dark-mode .btn-primary {
     right: 20px;
 }
 
+/* Mobile-only overrides to match the before/after page modal slider
+   (see before-after.css @media max-width 768px). Larger labels and no
+   red center dot, exactly as the page modal renders on phones. */
+@media (max-width: 768px) {
+    .comparison-slider .label {
+        font-size: 0.75rem;
+        padding: 6px 12px;
+    }
+
+    /* The before/after page slider has no red dot on its handle */
+    .comparison-slider .slider-line::before {
+        display: none;
+    }
+}
+
 /* 5. REVEAL ON SCROLL */
 .reveal-on-scroll {
     opacity: 0;
