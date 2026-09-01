@@ -1138,13 +1138,20 @@ body.dark-mode .before-after-card:nth-child(even) {
     }
 
     .services-section { padding: 60px 2% 40px; }
+    /* Single column on phones — the 1024px rule's repeat(2, 1fr) is too
+       cramped at 375-500px widths */
+    .services-cards { grid-template-columns: 1fr; gap: 24px; }
     .before-after-section { padding: 60px 5% 40px; }
     .before-after-grid { grid-template-columns: 1fr; gap: 20px; }
     .before-after-card { padding: 12px; }
     .before-after-cta { margin-top: 30px; }
 
-    /* Process steps (mirrors pricing.css mobile rules) */
-    .process-grid { grid-template-columns: 1fr; gap: 28px; }
+    /* Process steps (mirrors pricing.css mobile rules).
+       .how-it-works .process-grid is repeated at full specificity here because
+       the desktop rule `.how-it-works .process-grid { repeat(3, 1fr) }` (0,2,0)
+       would otherwise out-rank a bare `.process-grid` (0,1,0) override and the
+       steps would stay squeezed into 3 columns on phones. */
+    .how-it-works .process-grid { grid-template-columns: 1fr; gap: 28px; }
     .process-step { display: grid; grid-template-columns: 56px 1fr; column-gap: 12px; }
     .process-number { grid-row: span 2; margin-bottom: 0; }
     .process-step h3 { margin-bottom: 5px; }
