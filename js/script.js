@@ -1,8 +1,22 @@
 /**
- * Justine Pean Huyo-a Before & After Script
- * Handles the Before/After Comparison Modal
+ * Justine Pean Huyo-a — Site Script
+ *
+ * CONTENTS
+ * [ 1] Element references
+ * [ 2] Scroll progress bar, navbar hide/show, back-to-top
+ * [ 3] Mobile menu toggle
+ * [ 4] Before/After comparison modal (before-after.html)
+ * [ 5] Before & After gallery filtering (before-after.html)
+ * [ 6] Homepage comparison sliders (index.html)
+ * [ 7] About section scroll effects (index.html)
+ * [ 8] Intersection Observer reveals (service cards, .reveal-on-scroll)
+ * [ 9] Dark mode toggle
+ *
+ * All page-specific blocks are guarded so this single file can be
+ * safely included on every page.
  */
 
+/* [ 1] Element references */
 const modal = document.getElementById('modal');
 const closeBtn = document.querySelector('.close-btn');
 const slider = document.getElementById('slider');
@@ -21,10 +35,12 @@ const progressBar = document.querySelector('.scroll-progress');
 const backToTopBtn = document.querySelector('.back-to-top');
 let activeGalleryIndex = -1;
 
+/* [ 7] About section scroll effects (index.html) */
 const aboutSection = document.querySelector('.about-section');
 const aboutVisual = document.querySelector('.about-visual');
 const aboutText = document.querySelector('.about-text');
 
+/* [ 2] Scroll progress bar, navbar hide/show, back-to-top */
 const updateProgressBar = () => {
     if (progressBar) {
         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -89,6 +105,7 @@ if (backToTopBtn) {
     });
 }
 
+/* [ 3] Mobile menu toggle */
 if (menuToggle && navLinks) {
     menuToggle.addEventListener('click', () => {
         const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
@@ -102,6 +119,7 @@ if (menuToggle && navLinks) {
     });
 }
 
+/* [ 4] Before/After comparison modal (before-after.html) */
 // Initialize Gallery Listeners
 if (galleryItems.length > 0) {
     const openComparison = (item) => {
@@ -164,7 +182,7 @@ if (beforeImageSelect) {
     });
 }
 
-// Before & After Filtering Logic
+/* [ 5] Before & After gallery filtering (before-after.html) */
 const filterBtns = document.querySelectorAll('.filter-btn');
 if (filterBtns.length > 0) {
     // Function to reveal items with a staggered delay
@@ -218,14 +236,13 @@ if (filterBtns.length > 0) {
     window.addEventListener('load', revealGalleryItems);
 }
 
-// Slider Input Logic
+/* [ 6] Homepage comparison sliders (index.html) */
 if (slider) {
     slider.addEventListener('input', (e) => {
         wrapper.style.setProperty('--position', `${e.target.value}%`);
     });
 }
 
-// Homepage Comparison Sliders Logic
 const homepageSliders = document.querySelectorAll('.comparison-slider .slider-input');
 homepageSliders.forEach((sliderInput) => {
     const wrapper = sliderInput.closest('.comparison-wrapper');
@@ -307,7 +324,7 @@ if (aboutSection) {
     }, { passive: true });
 }
 
-// Intersection Observer for Service Cards Reveal
+/* [ 8] Intersection Observer reveals (service cards, .reveal-on-scroll) */
 const serviceCards = document.querySelectorAll('.service-card');
 if (serviceCards.length > 0) {
     const serviceObserver = new IntersectionObserver((entries) => {
@@ -367,7 +384,7 @@ if (revealElements.length > 0) {
     revealElements.forEach(el => revealObserver.observe(el));
 }
 
-// Dark Mode Toggle Logic
+/* [ 9] Dark mode toggle */
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
 

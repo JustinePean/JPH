@@ -1,0 +1,345 @@
+/*
+    BEFORE & AFTER PAGE STYLES (before-after.html)
+
+    [ 1. PAGE HEADER & FILTERS ]
+    [ 2. GALLERY GRID ]
+    [ 3. COMPARISON MODAL & SLIDER (unscoped variants) ]
+    [ 4. RESPONSIVE ]
+
+    Shared styles (nav, buttons, footer, reveal) live in base.css.
+*/
+
+/* 1. PAGE HEADER & FILTERS */
+.before-after-header {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    padding: 90px 5% 40px;
+    text-align: center;
+}
+
+.before-after-header h1 {
+    animation: fadeInUp 0.8s cubic-bezier(0.19, 1, 0.22, 1) both;
+}
+
+.before-after-filters .filter-btn {
+    opacity: 0;
+    animation: fadeInUp 0.8s cubic-bezier(0.19, 1, 0.22, 1) both;
+}
+
+/* Staggered animation delays for filter buttons */
+.before-after-filters .filter-btn:nth-child(1) { animation-delay: 0.1s; }
+.before-after-filters .filter-btn:nth-child(2) { animation-delay: 0.2s; }
+.before-after-filters .filter-btn:nth-child(3) { animation-delay: 0.3s; }
+.before-after-filters .filter-btn:nth-child(4) { animation-delay: 0.4s; }
+.before-after-filters .filter-btn:nth-child(5) { animation-delay: 0.5s; }
+.before-after-filters .filter-btn:nth-child(6) { animation-delay: 0.6s; }
+.before-after-filters .filter-btn:nth-child(7) { animation-delay: 0.7s; }
+.before-after-filters .filter-btn:nth-child(8) { animation-delay: 0.8s; }
+
+.before-after-filters {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: transparent;
+    border: 1px solid #eee;
+    padding: 10px 24px;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    color: var(--subtle);
+}
+
+.filter-btn:hover {
+    border-color: var(--text);
+    color: var(--text);
+}
+
+.filter-btn.active {
+    background: var(--text);
+    color: #fff;
+    border-color: var(--text);
+}
+
+/* 2. GALLERY GRID */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    padding: 0 5% 100px;
+    max-width: 1400px;
+    margin: 0 auto;
+    justify-content: center; /* Center items if they don't fill the last row */
+}
+
+.gallery-item {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    background: var(--bg-alt);
+    border-radius: 18px;
+    aspect-ratio: 1 / 1;
+    /* Entrance animation base states */
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.19, 1, 0.22, 1), box-shadow 0.2s;
+    will-change: transform, opacity;
+}
+
+.gallery-item.hide {
+    display: none;
+}
+
+.gallery-item.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 18px;
+    transition: var(--transition);
+}
+
+.gallery-item:hover img { transform: scale(1.05); }
+
+.gallery-item .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    backdrop-filter: blur(5px);
+}
+
+.gallery-item .overlay span {
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.7rem;
+    border: 1px solid rgba(255,255,255,0.4);
+    padding: 12px 24px;
+}
+
+.gallery-item:hover .overlay { opacity: 1; }
+
+/* 3. COMPARISON MODAL & SLIDER */
+/* These are the unscoped slider variants used inside the modal. The
+   homepage's scoped variants live in base.css (.comparison-slider ...). */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: white;
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.modal.active { display: flex; }
+
+body.dark-mode .modal {
+    background: var(--bg);
+}
+
+body.dark-mode .close-btn {
+    color: var(--text);
+}
+
+.close-btn {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-size: 24px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+.comparison-nav {
+    position: absolute;
+    top: 50%;
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.8);
+    color: #222;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-50%);
+    transition: var(--transition);
+    z-index: 1100;
+}
+
+.comparison-nav:hover {
+    background: var(--text);
+    color: #fff;
+    transform: translateY(-50%) scale(1.08);
+}
+
+.comparison-nav-prev { left: 30px; }
+.comparison-nav-next { right: 30px; }
+
+body.dark-mode .comparison-nav {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(35, 35, 35, 0.85);
+    color: var(--text);
+}
+
+.comparison-wrapper {
+    position: relative;
+    max-width: 100%;
+    max-height: 80vh;
+    overflow: hidden;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.1);
+}
+
+.comparison-wrapper img {
+    display: block;
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+}
+
+.img-before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    clip-path: inset(0 calc(100% - var(--position)) 0 0);
+}
+
+.slider-line {
+    position: absolute;
+    inset: 0 auto 0 var(--position);
+    width: 1px;
+    background: rgba(255,255,255,0.6);
+    transform: translateX(-50%);
+    z-index: 9;
+    pointer-events: none;
+}
+
+.slider-line::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.4);
+}
+
+.slider-input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    appearance: none;
+    background: transparent;
+    z-index: 10;
+    cursor: col-resize;
+}
+
+.label {
+    position: absolute;
+    top: 20px;
+    color: white;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    z-index: 9;
+    background: rgba(0,0,0,0.2);
+    padding: 4px 8px;
+}
+.label-before { left: 20px; }
+.label-after { right: 20px; }
+
+.before-selector {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 11;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: var(--bg);
+    padding: 8px 12px;
+}
+
+.before-selector select {
+    border: 1px solid var(--subtle);
+    background: var(--bg);
+    color: var(--text);
+    padding: 5px 8px;
+    font: inherit;
+    letter-spacing: 0;
+}
+
+/* 4. RESPONSIVE */
+
+/* --- TABLET CORE (1024px and below) --- */
+@media (max-width: 1024px) {
+    .gallery {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+    }
+}
+
+/* --- MOBILE CORE (768px and below) --- */
+@media (max-width: 768px) {
+    .before-after-header { padding-top: 110px; }
+    .before-after-filters { gap: 8px; }
+    .filter-btn { padding: 8px 16px; font-size: 0.65rem; }
+
+    .gallery {
+        grid-template-columns: 1fr; /* Single column on mobile */
+        gap: 15px;
+    }
+
+    .modal { padding: 20px; }
+    .close-btn { top: 20px; right: 20px; font-size: 32px; }
+    .comparison-nav { width: 40px; height: 40px; }
+    .comparison-nav-prev { left: 12px; }
+    .comparison-nav-next { right: 12px; }
+    .comparison-wrapper { max-height: 70vh; }
+    .comparison-wrapper img { max-height: 70vh; }
+    .label { font-size: 0.75rem; padding: 6px 12px; }
+
+    .before-selector {
+        bottom: 12px;
+        width: max-content;
+        max-width: calc(100% - 40px);
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
