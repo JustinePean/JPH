@@ -10,7 +10,8 @@
  * [ 6] Homepage comparison sliders (index.html)
  * [ 7] About section scroll effects (index.html)
  * [ 8] Intersection Observer reveals (service cards, .reveal-on-scroll)
- * [ 9] Dark mode toggle
+ * [ 9] FAQ accordion (index.html)
+ * [ 10] Dark mode toggle
  *
  * All page-specific blocks are guarded so this single file can be
  * safely included on every page.
@@ -384,7 +385,29 @@ if (revealElements.length > 0) {
     revealElements.forEach(el => revealObserver.observe(el));
 }
 
-/* [ 9] Dark mode toggle */
+// FAQ accordion logic (items are static markup in index.html)
+const faqQuestions = document.querySelectorAll('.faq-question');
+if (faqQuestions.length > 0) {
+    faqQuestions.forEach((question) => {
+        question.addEventListener('click', () => {
+            const item = question.closest('.faq-item');
+            const isOpen = item.classList.contains('is-open');
+
+            // Accordion behavior: only one item may be open at a time
+            document.querySelectorAll('.faq-item.is-open').forEach((openItem) => {
+                if (openItem !== item) {
+                    openItem.classList.remove('is-open');
+                    openItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            item.classList.toggle('is-open', !isOpen);
+            question.setAttribute('aria-expanded', String(!isOpen));
+        });
+    });
+}
+
+/* [ 10] Dark mode toggle */
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
 
