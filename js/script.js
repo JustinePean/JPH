@@ -1,5 +1,5 @@
 /**
- * Justine Pean Huyo-a — Site Script
+ * Just Th!nk — Site Script
  *
  * CONTENTS
  * [ 1] Element references
