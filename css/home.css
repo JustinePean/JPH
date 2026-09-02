@@ -220,6 +220,12 @@ body.dark-mode .image-wrapper img {
     transform: scale(1.1);
 }
 
+/* Dark mode: allow hover to override the dimmed base filter (matches light mode hover) */
+body.dark-mode .image-wrapper:hover img {
+    filter: grayscale(0%) brightness(1.1) drop-shadow(0 20px 50px var(--hero-shadow));
+    transform: scale(1.1);
+}
+
 /* Hero secondary buttons: white on the photo background (primary keeps theme accent) */
 .hero .btn:not(.btn-primary) {
     background: #ffffff;
