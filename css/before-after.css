@@ -70,14 +70,16 @@
 }
 
 /* 2. GALLERY GRID */
+/* Fixed 3-column grid on desktop (NOT auto-fit/auto-fill) so sections with
+   fewer than 3 items (e.g. Virtual Twilight, Virtual Staging) keep consistent
+   card widths instead of stretching across the full row. */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 25px;
     padding: 0 5% 100px;
     max-width: 1400px;
     margin: 0 auto;
-    justify-content: center; /* Center items if they don't fill the last row */
 }
 
 .gallery-item {
@@ -338,7 +340,7 @@ body.dark-mode .comparison-nav {
 /* --- TABLET CORE (1024px and below) --- */
 @media (max-width: 1024px) {
     .gallery {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-template-columns: repeat(2, 1fr); /* Fixed 2 columns on tablet */
         gap: 20px;
     }
 }
