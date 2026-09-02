@@ -212,6 +212,11 @@ body.dark-mode .comparison-nav {
     max-height: 80vh;
     overflow: hidden;
     box-shadow: 0 40px 100px rgba(0,0,0,0.1);
+    /* Prevent iOS tap highlight / selection boxes on the slider */
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 .comparison-wrapper img {
@@ -259,10 +264,33 @@ body.dark-mode .comparison-nav {
     inset: 0;
     width: 100%;
     height: 100%;
+    -webkit-appearance: none;
     appearance: none;
     background: transparent;
     z-index: 10;
     cursor: col-resize;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    box-shadow: none;
+}
+
+.slider-input:focus,
+.slider-input:focus-visible {
+    outline: none;
+    box-shadow: none;
+}
+
+.slider-input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 48px;
+    height: 48px;
+    background: transparent;
+    border: none;
+    cursor: col-resize;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    box-shadow: none;
 }
 
 .label {
