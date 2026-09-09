@@ -411,8 +411,6 @@ body.dark-mode .btn-primary {
 .comparison-slider .img-before {
     z-index: 2;
     clip-path: inset(0 calc(100% - var(--position)) 0 0);
-    will-change: clip-path;
-    transform: translateZ(0);
 }
 
 /* Top-aligned crop for vertical portrait photos (head & shoulders framing) */
