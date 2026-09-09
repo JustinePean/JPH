@@ -1064,7 +1064,7 @@ body.dark-mode .before-after-card:nth-child(even) {
     .about-visual { order: 0; max-width: none; margin: 0; }
     .about-text p { margin-left: 0; margin-right: 0; }
     .about-image-wrapper { padding-bottom: 0; aspect-ratio: 4/5; }
-    .about-image-wrapper img { position: static; height: 100%; width: 100%; transform: none; border-radius: 26px; }
+    .about-image-wrapper img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; transform: none; border-radius: 26px; }
 
     .services-section { padding: 80px 5%; }
     .services-cards {
@@ -1108,8 +1108,8 @@ body.dark-mode .before-after-card:nth-child(even) {
         margin-bottom: 0px;
         pointer-events: none;
     }
-    .about-image-wrapper { height: auto; padding-bottom: 0; aspect-ratio: auto; clip-path: none !important; }
-    .about-image-wrapper img { position: static; width: 100%; height: auto; object-fit: contain; border-radius: 20px; transform: none !important; }
+    .about-image-wrapper { padding-bottom: 0; clip-path: none !important; aspect-ratio: 4/5; }
+    .about-image-wrapper img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; border-radius: 20px; transform: none !important; }
     .about-text {
         position: static;
         padding: 0;
