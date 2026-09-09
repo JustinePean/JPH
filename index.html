@@ -69,7 +69,11 @@
         <div class="about-container">
             <div class="about-visual">
                 <div class="image-wrapper about-image-wrapper">
-                    <img src="images/aboutme-portrait.png" alt="Justine Pean Huyo-a">
+                    <!-- Two stacked layers enable a true overlapping crossfade on theme toggle.
+                         Only one layer is visible (opacity 1) at a time; the other
+                         sits behind it (opacity 0) so the dissolve overlaps. -->
+                    <img class="portrait-day"   src="images/aboutme-portrait.webp"        alt="Justine Pean Huyo-a" loading="eager">
+                    <img class="portrait-night" src="images/aboutme-portrait-night.webp"  alt="Justine Pean Huyo-a" loading="eager">
                 </div>
             </div>
             <div class="about-text">

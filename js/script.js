@@ -288,7 +288,7 @@ if (aboutSection) {
         if (!ticking) {
             window.requestAnimationFrame(() => {
                 const aboutImageWrapper = aboutVisual?.querySelector('.about-image-wrapper');
-                const aboutImg = aboutVisual?.querySelector('img');
+                const aboutImgs = aboutVisual?.querySelectorAll('img');
 
                 // About Visual Parallax
                 const aboutRect = aboutSection.getBoundingClientRect();
@@ -302,11 +302,11 @@ if (aboutSection) {
                         aboutVisual.style.opacity = revealProgress;
 
                         // Apply Masking and Scaling
-                        if (aboutImageWrapper && aboutImg) {
+                        if (aboutImageWrapper && aboutImgs.length) {
                             const inset = 15 - (revealProgress * 15);
                             const scale = 1.3 - (revealProgress * 0.3);
                             aboutImageWrapper.style.clipPath = `inset(${inset}% ${inset}% ${inset}% ${inset}% round 26px)`;
-                            aboutImg.style.transform = `scale(${scale})`;
+                            aboutImgs.forEach(img => img.style.transform = `scale(${scale})`);
                         }
 
                         const textMoveY = (rawProgress - 0.5) * 50;
