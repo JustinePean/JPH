@@ -2,125 +2,119 @@
  * Just Th!nk — Site Script
  *
  * CONTENTS
- * [ 1] Element references
- * [ 2] Scroll progress bar, navbar hide/show, back-to-top
- * [ 3] Mobile menu toggle
- * [ 4] Before/After comparison modal (before-after.html)
- * [ 5] Before & After gallery filtering (before-after.html)
- * [ 6] Homepage comparison sliders (index.html)
- * [ 7] About section scroll effects (index.html)
- * [ 8] Intersection Observer reveals (service cards, .reveal-on-scroll)
- * [ 9] FAQ accordion (index.html)
- * [ 10] Dark mode toggle
+ * [ 0] Navbar & common element initialization (runs after dynamic load)
+ * [ 1] Before/After comparison modal (before-after.html)
+ * [ 2] Before & After gallery filtering (before-after.html)
+ * [ 3] Homepage comparison sliders (index.html)
+ * [ 4] About section scroll effects (index.html)
+ * [ 5] Intersection Observer reveals (service cards, .reveal-on-scroll)
+ * [ 6] FAQ accordion (index.html)
+ * [ 7] Dark mode toggle
  *
  * All page-specific blocks are guarded so this single file can be
  * safely included on every page.
+ * Requires common-elements.js to be loaded first.
  */
 
-/* [ 1] Element references */
-const modal = document.getElementById('modal');
-const closeBtn = document.querySelector('.close-btn');
-const slider = document.getElementById('slider');
-const wrapper = document.getElementById('comparison-wrapper');
-const imgBefore = document.getElementById('modal-before');
-const imgAfter = document.getElementById('modal-after');
-const beforeImageSelect = document.getElementById('before-image-select');
-const beforeSelector = document.querySelector('.before-selector');
-const previousBtn = document.getElementById('comparison-prev');
-const nextBtn = document.getElementById('comparison-next');
-const galleryItems = document.querySelectorAll('.gallery-item');
-const menuToggle = document.querySelector('.menu-toggle');
-const navLinks = document.querySelector('.nav-links');
-const navbar = document.querySelector('.navbar');
-const progressBar = document.querySelector('.scroll-progress');
-const backToTopBtn = document.querySelector('.back-to-top');
+/* [ 0] Navbar & common element initialization */
 let activeGalleryIndex = -1;
+let navbar, navLinks, menuToggle, progressBar, backToTopBtn;
+let modal, closeBtn, slider, wrapper, imgBefore, imgAfter;
+let beforeImageSelect, beforeSelector, previousBtn, nextBtn;
+let galleryItems, aboutSection, aboutVisual, aboutText;
 
-/* [ 7] About section scroll effects (index.html) */
-const aboutSection = document.querySelector('.about-section');
-const aboutVisual = document.querySelector('.about-visual');
-const aboutText = document.querySelector('.about-text');
+/**
+ * Re-initializes navbar and common element references and event listeners.
+ * Called by common-elements.js after dynamic elements are loaded.
+ */
+window.reinitializeNavbar = () => {
+    // Re-query elements (they were loaded dynamically)
+    navbar = document.querySelector('.navbar');
+    navLinks = document.querySelector('.nav-links');
+    menuToggle = document.querySelector('.menu-toggle');
+    progressBar = document.querySelector('.scroll-progress');
+    backToTopBtn = document.querySelector('.back-to-top');
 
-/* [ 2] Scroll progress bar, navbar hide/show, back-to-top */
-const updateProgressBar = () => {
-    if (progressBar) {
-        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = height > 0 ? (window.scrollY / height) * 100 : 0;
-        progressBar.style.width = scrolled + "%";
+    /* Scroll progress bar, navbar hide/show, back-to-top */
+    const updateProgressBar = () => {
+        if (progressBar) {
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = height > 0 ? (window.scrollY / height) * 100 : 0;
+            progressBar.style.width = scrolled + '%';
+        }
+    };
+
+    if (navbar) {
+        let lastScrollY = window.scrollY;
+        const scrollThreshold = 10;
+
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+            updateProgressBar();
+
+            if (backToTopBtn) {
+                backToTopBtn.classList.toggle('is-visible', currentScrollY > 400);
+            }
+
+            navbar.classList.toggle('is-scrolled', currentScrollY > 50);
+
+            if (currentScrollY <= 0) {
+                navbar.classList.remove('is-hidden');
+                lastScrollY = currentScrollY;
+                return;
+            }
+
+            if (Math.abs(currentScrollY - lastScrollY) > scrollThreshold) {
+                if (currentScrollY > lastScrollY && !navLinks?.classList.contains('is-open')) {
+                    navbar.classList.add('is-hidden');
+                } else {
+                    navbar.classList.remove('is-hidden');
+                }
+                lastScrollY = currentScrollY;
+            }
+        });
+
+        updateProgressBar();
+    }
+
+    if (backToTopBtn) {
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    /* Mobile menu toggle */
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', String(!isExpanded));
+            menuToggle.classList.toggle('is-active');
+            navLinks.classList.toggle('is-open');
+
+            if (navbar && navLinks.classList.contains('is-open')) {
+                navbar.classList.remove('is-hidden');
+            }
+        });
     }
 };
 
-if (navbar) {
-    let lastScrollY = window.scrollY;
-    const scrollThreshold = 10; // Minimum scroll distance to trigger navbar toggle
+/* Query page-specific elements */
+modal = document.getElementById('modal');
+closeBtn = document.querySelector('.close-btn');
+slider = document.getElementById('slider');
+wrapper = document.getElementById('comparison-wrapper');
+imgBefore = document.getElementById('modal-before');
+imgAfter = document.getElementById('modal-after');
+beforeImageSelect = document.getElementById('before-image-select');
+beforeSelector = document.querySelector('.before-selector');
+previousBtn = document.getElementById('comparison-prev');
+nextBtn = document.getElementById('comparison-next');
+galleryItems = document.querySelectorAll('.gallery-item');
+aboutSection = document.querySelector('.about-section');
+aboutVisual = document.querySelector('.about-visual');
+aboutText = document.querySelector('.about-text');
 
-    window.addEventListener('scroll', () => {
-        const currentScrollY = window.scrollY;
-        updateProgressBar();
-
-        // Back to Top button visibility
-        if (backToTopBtn) {
-            if (currentScrollY > 400) {
-                backToTopBtn.classList.add('is-visible');
-            } else {
-                backToTopBtn.classList.remove('is-visible');
-            }
-        }
-
-        // Toggle scrolled state for height and background changes
-        if (currentScrollY > 50) {
-            navbar.classList.add('is-scrolled');
-        } else {
-            navbar.classList.remove('is-scrolled');
-        }
-
-        if (currentScrollY <= 0) {
-            navbar.classList.remove('is-hidden');
-            lastScrollY = currentScrollY;
-            return;
-        }
-
-        // Add a threshold check to prevent the navbar from flickering on tiny scroll movements
-        if (Math.abs(currentScrollY - lastScrollY) > scrollThreshold) {
-            if (currentScrollY > lastScrollY && !navLinks?.classList.contains('is-open')) {
-                navbar.classList.add('is-hidden');
-            } else {
-                navbar.classList.remove('is-hidden');
-            }
-            lastScrollY = currentScrollY;
-        }
-    });
-
-    // Initialize progress bar immediately or on load
-    if (document.readyState === 'complete' || document.readyState === 'interactive') {
-        updateProgressBar();
-    } else {
-        window.addEventListener('DOMContentLoaded', updateProgressBar);
-    }
-}
-
-// Back to Top Click Handler
-if (backToTopBtn) {
-    backToTopBtn.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-}
-
-/* [ 3] Mobile menu toggle */
-if (menuToggle && navLinks) {
-    menuToggle.addEventListener('click', () => {
-        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-        menuToggle.setAttribute('aria-expanded', String(!isExpanded));
-        menuToggle.classList.toggle('is-active');
-        navLinks.classList.toggle('is-open');
-
-        if (navbar && navLinks.classList.contains('is-open')) {
-            navbar.classList.remove('is-hidden');
-        }
-    });
-}
-
-/* [ 4] Before/After comparison modal (before-after.html) */
+/* [ 1] Before/After comparison modal (before-after.html) */
 // Initialize Gallery Listeners
 if (galleryItems.length > 0) {
     const openComparison = (item) => {
@@ -183,7 +177,7 @@ if (beforeImageSelect) {
     });
 }
 
-/* [ 5] Before & After gallery filtering (before-after.html) */
+/* [ 2] Before & After gallery filtering (before-after.html) */
 const filterBtns = document.querySelectorAll('.filter-btn');
 if (filterBtns.length > 0) {
     // Function to reveal items with a staggered delay
@@ -237,7 +231,7 @@ if (filterBtns.length > 0) {
     window.addEventListener('load', revealGalleryItems);
 }
 
-/* [ 6] Homepage comparison sliders (index.html) */
+/* [ 3] Homepage comparison sliders (index.html) */
 if (slider) {
     slider.addEventListener('input', (e) => {
         wrapper.style.setProperty('--position', `${e.target.value}%`);
@@ -275,7 +269,7 @@ window.addEventListener('keydown', (e) => {
 // Check for Scroll-Driven Animations support
 const supportsScrollTimeline = window.CSS && CSS.supports('animation-timeline', 'view()');
 
-// Parallax scroll logic for the About section
+/* [ 4] About section scroll effects (index.html) */
 if (aboutSection) {
     let ticking = false;
     let windowHeight = window.innerHeight;
@@ -324,7 +318,7 @@ if (aboutSection) {
     }, { passive: true });
 }
 
-/* [ 8] Intersection Observer reveals (service cards, .reveal-on-scroll) */
+/* [ 5] Intersection Observer reveals (service cards, .reveal-on-scroll) */
 const serviceCards = document.querySelectorAll('.service-card');
 if (serviceCards.length > 0) {
     const serviceObserver = new IntersectionObserver((entries) => {
@@ -384,6 +378,7 @@ if (revealElements.length > 0) {
     revealElements.forEach(el => revealObserver.observe(el));
 }
 
+/* [ 6] FAQ accordion (index.html) */
 // FAQ accordion logic (items are static markup in index.html)
 const faqQuestions = document.querySelectorAll('.faq-question');
 if (faqQuestions.length > 0) {
@@ -406,7 +401,7 @@ if (faqQuestions.length > 0) {
     });
 }
 
-/* [ 10] Dark mode toggle */
+/* [ 7] Dark mode toggle */
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
 

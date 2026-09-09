@@ -10,20 +10,9 @@
     <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
 </head>
 <body oncontextmenu="return false;">
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">Just Th!nk</a>
-            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle color theme">
-                <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.79" y2="5.64"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line></svg>
-                <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-            </button>
-            <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-            </div>
-        </div>
-    </nav>
-    <div class="scroll-progress"></div>
+
+    <!-- Navbar injected by common-elements.js -->
+    <div id="navbar-placeholder"></div>
 
     <main class="pricing-main">
         <header class="pricing-hero">
@@ -74,8 +63,10 @@
         <section class="pricing-final-cta"><div class="pricing-final-inner reveal-on-scroll"><p class="pricing-section-label">Ready when you are</p><h2>You focus on shooting.<br>I'll handle the post-production.</h2><p class="pricing-final-copy">Professional photo editing for real estate, architecture, lifestyle, portrait, and product photography.</p><a href="mailto:justinepeandh@gmail.com?subject=Free%20test%20edit" class="btn">Get your free test edit</a><div class="pricing-contacts"><a href="mailto:justinepeandh@gmail.com">justinepeandh@gmail.com</a><a href="https://wa.me/639912238610" target="_blank" rel="noopener">+63 991 223 8610</a></div></div></section>
     </main>
 
-    <footer class="footer reveal-on-scroll"><p>&copy; 2026 Justine Pean Huyo-a. All rights reserved.</p></footer>
-    <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg></button>
+    <!-- Footer & Back-to-top injected by common-elements.js -->
+    <div id="footer-placeholder"></div>
+
+    <script src="js/common-elements.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>
