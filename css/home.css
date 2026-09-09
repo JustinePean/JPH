@@ -353,6 +353,9 @@ body.dark-mode .image-wrapper:hover img {
 .service-icon-product {
     background-image: url('data:image/svg+xml;utf8,<svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M36 10L60 22V48L36 60L12 48V22L36 10Z" fill="%23E6F0F7" stroke="%234A90E2" stroke-width="2" stroke-linejoin="round"/><path d="M12 22L36 34L60 22" stroke="%234A90E2" stroke-width="2" stroke-linejoin="round"/><path d="M36 34V60" stroke="%234A90E2" stroke-width="2"/><path d="M24 16L48 28" stroke="%23F5A623" stroke-width="2" stroke-linecap="round"/></svg>');
 }
+.service-icon-ai {
+    background-image: url('data:image/svg+xml;utf8,<svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="14" y="14" width="44" height="44" rx="8" fill="%23E8F5E9"/><circle cx="28" cy="28" r="6" fill="%234CAF50"/><circle cx="44" cy="28" r="6" fill="%234CAF50"/><circle cx="28" cy="44" r="6" fill="%234CAF50"/><circle cx="44" cy="44" r="6" fill="%234CAF50"/><circle cx="36" cy="36" r="8" fill="%232E7D32"/><path d="M36 28v16M28 36h16" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>');
+}
 
 .service-name {
     font-family: 'Montserrat', sans-serif;

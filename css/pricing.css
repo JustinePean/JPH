@@ -54,6 +54,11 @@ body.dark-mode .pricing-page { --pricing-accent: #a5b39a; --pricing-line: rgba(2
 .specialty-item { display: flex; justify-content: space-between; gap: 16px; padding: 22px 20px; border-right: 1px solid var(--pricing-line); border-bottom: 1px solid var(--pricing-line); }
 .specialty-item h3 { font-size: 0.76rem; letter-spacing: 1px; }
 .specialty-price { white-space: nowrap; color: var(--pricing-accent); font-family: 'Montserrat', sans-serif; font-size: 0.82rem; font-weight: 700; }
+.specialty-item-featured { grid-column: 1 / -1; flex-direction: column; gap: 12px; padding: 24px 20px; background: var(--bg); border: 2px solid var(--pricing-accent); }
+.specialty-item-header { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+.specialty-item-header h3 { font-size: 0.82rem; }
+.specialty-item-desc { color: var(--subtle); font-size: 0.88rem; line-height: 1.5; }
+.specialty-item-turnaround { color: var(--pricing-accent); font-size: 0.78rem; font-weight: 600; }
 .personal-service { display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start; }
 .feature-grid { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 48px; }
 .feature-block { padding-top: 20px; border-top: 1px solid var(--pricing-accent); }
