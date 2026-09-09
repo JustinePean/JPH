@@ -18,7 +18,7 @@
 
 /* [ 0] Navbar & common element initialization */
 let activeGalleryIndex = -1;
-let navbar, navLinks, menuToggle, progressBar, backToTopBtn;
+let navbar, navLinks, menuToggle, progressBar, backToTopBtn, themeToggle;
 let modal, closeBtn, slider, wrapper, imgBefore, imgAfter;
 let beforeImageSelect, beforeSelector, previousBtn, nextBtn;
 let galleryItems, aboutSection, aboutVisual, aboutText;
@@ -94,6 +94,16 @@ window.reinitializeNavbar = () => {
             if (navbar && navLinks.classList.contains('is-open')) {
                 navbar.classList.remove('is-hidden');
             }
+        });
+    }
+
+    /* Dark mode toggle — initialized here so #theme-toggle exists in DOM */
+    themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const theme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+            localStorage.setItem('theme', theme);
         });
     }
 };
@@ -401,20 +411,8 @@ if (faqQuestions.length > 0) {
     });
 }
 
-/* [ 7] Dark mode toggle */
-const themeToggle = document.getElementById('theme-toggle');
-const body = document.body;
-
-// Check for saved theme preference
-const currentTheme = localStorage.getItem('theme');
-if (currentTheme === 'dark') {
-    body.classList.add('dark-mode');
-}
-
-if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
-        const theme = body.classList.contains('dark-mode') ? 'dark' : 'light';
-        localStorage.setItem('theme', theme);
-    });
+/* [ 7] Dark mode — saved preference applied early to prevent flash */
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'dark') {
+    document.body.classList.add('dark-mode');
 }
