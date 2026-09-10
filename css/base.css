@@ -52,7 +52,7 @@ html {
 
 /* Only enable scroll snapping on larger screens for the main page */
 @media (min-width: 1024px) {
-    html:not(.before-after-page) {
+    html:not(.before-after-page):not(.contact-page) {
         scroll-snap-type: y proximity;
     }
 }
@@ -346,7 +346,7 @@ body.dark-mode .moon-icon { display: none; }
 }
 
 .btn-secondary { background: transparent; color: var(--text); }
-.btn:hover { background: var(--accent); color: #fff; transform: translateY(-3px); }
+.btn:hover { background: var(--accent); color: #fff; text-decoration: none; transform: translateY(-3px); }
 
 /* Primary CTA — defined once, used at every main conversion point */
 .btn-primary {
@@ -359,6 +359,7 @@ body.dark-mode .moon-icon { display: none; }
     background: var(--accent);
     color: #fff;
     opacity: 0.85;
+    text-decoration: none;
 }
 
 body.dark-mode .btn-primary {
@@ -573,12 +574,89 @@ body.dark-mode .btn-primary {
     }
 }
 
+/* Bouncing effect for Contact nav button on hover */
+@keyframes navBounce {
+    0% { transform: translateY(0); }
+    30% { transform: translateY(-8px); }
+    50% { transform: translateY(-4px); }
+    70% { transform: translateY(-6px); }
+    100% { transform: translateY(0); }
+}
+
 /* 6. FOOTER */
 .footer {
-    padding: 60px 5%;
+    padding: 80px 5% 40px;
     text-align: center;
     font-size: 0.7rem;
     color: var(--subtle);
+}
+
+.footer-inner {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.footer-cta {
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+}
+
+.footer-cta h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-bottom: 8px;
+    color: var(--text);
+}
+
+.footer-cta p {
+    color: var(--subtle);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+}
+
+.footer-cta .btn {
+    display: inline-block;
+}
+
+.footer-contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 24px;
+}
+
+.footer-bottom {
+    opacity: 0.7;
+}
+
+/* Nav CTA Button */
+.nav-cta {
+    background: var(--accent);
+    color: var(--bg) !important;
+    padding: 10px 20px !important;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.nav-cta:hover {
+    opacity: 0.85;
+    transform: translateY(-3px);
+    text-decoration: none;
+}
+body.dark-mode .nav-cta:hover {
+    opacity: 0.85;
+}
+
+body.dark-mode .nav-cta {
+    background: var(--accent);
+    color: var(--bg) !important;
 }
 
 /* 7. SHARED RESPONSIVE */
@@ -619,12 +697,31 @@ body.dark-mode .btn-primary {
         animation-duration: 0.4s;
     }
 
+    /* Reset nav-cta styles in mobile menu */
+    .nav-links a.nav-cta {
+        background: var(--accent);
+        color: var(--bg) !important;
+        padding: 12px 24px !important;
+        text-align: center;
+        margin-top: 8px;
+        border-radius: 999px;
+        transition: all 0.3s ease;
+    }
+
+    .nav-links a.nav-cta:hover {
+        opacity: 0.85;
+        transform: translateY(-3px);
+        text-decoration: none;
+    }
+    body.dark-mode .nav-links a.nav-cta:hover {
+        opacity: 0.85;
+    }
+
     /* Faster staggered entrance for mobile */
     .nav-links a:nth-child(1) { animation-delay: 0.05s; }
     .nav-links a:nth-child(2) { animation-delay: 0.1s; }
     .nav-links a:nth-child(3) { animation-delay: 0.15s; }
     .nav-links a:nth-child(4) { animation-delay: 0.2s; }
-    .nav-links a:nth-child(5) { animation-delay: 0.25s; }
 
     .btn { padding: 14px 22px; font-size: 0.65rem; }
 

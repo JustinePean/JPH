@@ -5,12 +5,11 @@
     [ 2. SERVICES ]
     [ 3. PRICING TEASER ]
     [ 4. HOW IT WORKS ]
-    [ 5. CONTACT CTA (Get In Touch) ]
-    [ 6. ABOUT ]
-    [ 7. TESTIMONIAL ]
-    [ 8. BEFORE & AFTER SECTION ]
-    [ 9. FAQ SECTION ]
-    [ 10. RESPONSIVE ]
+    [ 5. ABOUT ]
+    [ 6. TESTIMONIAL ]
+    [ 7. CLIENT RESULTS SECTION ]
+    [ 8. FAQ SECTION ]
+    [ 9. RESPONSIVE ]
 */
 
 /* 1. HERO */
@@ -454,6 +453,14 @@ body.dark-mode .pricing-teaser {
     color: var(--text);
 }
 
+.pricing-teaser .btn,
+.pricing-teaser .btn:hover,
+.pricing-teaser .btn:focus,
+.pricing-teaser .btn:active {
+    text-decoration: none !important;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
 /* 4. HOW IT WORKS — reuses .process-step styles from pricing.css */
 .how-it-works {
     padding: 80px 5%;
@@ -485,7 +492,7 @@ body.dark-mode .how-it-works {
 .process-step h3 { font-family: 'Montserrat', sans-serif; font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
 .process-step p { color: var(--subtle); font-size: 0.88rem; }
 
-/* 9. FAQ SECTION */
+/* 8. FAQ SECTION */
 .faq-section {
     padding: 100px 5% 90px;
     border-top: 1px solid rgba(51, 51, 51, 0.08);
@@ -612,42 +619,7 @@ body.dark-mode .faq-item.is-open {
     opacity: 1;
 }
 
-/* 5. CONTACT CTA (Get In Touch) */
-.contact-cta {
-    padding: 100px 5% 90px;
-    text-align: center;
-}
-
-.contact-cta-inner {
-    max-width: 640px;
-    margin: 0 auto;
-}
-
-.contact-cta .subtitle {
-    display: block;
-    margin-bottom: 12px;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--subtle);
-}
-
-.contact-cta .services-title {
-    margin-bottom: 14px;
-}
-
-.contact-cta-copy {
-    font-size: 1.05rem;
-    color: var(--subtle);
-    margin-bottom: 32px;
-}
-
-.contact-cta .about-contact {
-    justify-content: center;
-    margin-top: 28px;
-}
-
-/* 6. ABOUT */
+/* 5. ABOUT */
 .about-section {
     padding: 100px 5% 70px;
 }
@@ -870,7 +842,7 @@ body.dark-mode .contact-link {
     transform: scale(1.1);
 }
 
-/* 7. TESTIMONIAL */
+/* 6. TESTIMONIAL */
 .testimonial-section {
     padding: 80px 5%;
     display: flex;
@@ -969,20 +941,20 @@ body.dark-mode .contact-link {
     letter-spacing: 1px;
 }
 
-/* 8. BEFORE & AFTER SECTION */
-.before-after-section {
+/* 7. CLIENT RESULTS SECTION (formerly Before & After) */
+.client-results-section {
     padding: 80px 5% 60px;
     display: flex;
     justify-content: center;
 }
 
-.before-after-container {
+.client-results-container {
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
 }
 
-.before-after-title {
+.client-results-title {
     text-align: center;
     font-family: 'Montserrat', sans-serif;
     font-size: 2.2rem;
@@ -992,14 +964,14 @@ body.dark-mode .contact-link {
     color: var(--text);
 }
 
-.before-after-grid {
+.client-results-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     justify-content: center;
 }
 
-.before-after-card {
+.client-results-card {
     background: var(--bg-alt);
     border-radius: 22px;
     box-shadow: 0 6px 32px rgba(0,0,0,0.06);
@@ -1015,29 +987,29 @@ body.dark-mode .contact-link {
     will-change: transform, opacity;
 }
 
-.before-after-card.reveal {
+.client-results-card.reveal {
     opacity: 1;
     transform: translateY(0);
 }
 
-.before-after-card:hover {
+.client-results-card:hover {
     transform: translateY(-8px) scale(1.02);
     box-shadow: 0 12px 36px rgba(0,0,0,0.10);
 }
 
 /* Alternating card backgrounds — the even card gets a distinct treatment,
-   odd cards keep the base .before-after-card background */
-.before-after-card:nth-child(even) {
+   odd cards keep the base .client-results-card background */
+.client-results-card:nth-child(even) {
     background: #f5f5f5;
     border: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-body.dark-mode .before-after-card:nth-child(even) {
+body.dark-mode .client-results-card:nth-child(even) {
     background: #1f1f1f;
     border-color: rgba(255, 255, 255, 0.06);
 }
 
-.before-after-caption {
+.client-results-caption {
     font-size: 0.92rem;
     color: var(--text);
     text-align: center;
@@ -1046,12 +1018,12 @@ body.dark-mode .before-after-card:nth-child(even) {
     padding: 0 4px 4px;
 }
 
-.before-after-cta {
+.client-results-cta {
     text-align: center;
     margin-top: 45px;
 }
 
-/* 10. RESPONSIVE */
+/* 9. RESPONSIVE */
 
 /* --- TABLET CORE (1024px and below) --- */
 @media (max-width: 1024px) {
@@ -1077,7 +1049,7 @@ body.dark-mode .before-after-card:nth-child(even) {
         margin: 0 auto;
     }
     .service-card { padding: 32px 24px; }
-    .before-after-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .client-results-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
 }
 
 /* --- MOBILE CORE (768px and below) --- */
@@ -1127,10 +1099,10 @@ body.dark-mode .before-after-card:nth-child(even) {
     /* Single column on phones — the 1024px rule's repeat(2, 1fr) is too
        cramped at 375-500px widths */
     .services-cards { grid-template-columns: 1fr; gap: 24px; }
-    .before-after-section { padding: 60px 5% 40px; }
-    .before-after-grid { grid-template-columns: 1fr; gap: 20px; }
-    .before-after-card { padding: 12px; }
-    .before-after-cta { margin-top: 30px; }
+    .client-results-section { padding: 60px 5% 40px; }
+    .client-results-grid { grid-template-columns: 1fr; gap: 20px; }
+    .client-results-card { padding: 12px; }
+    .client-results-cta { margin-top: 30px; }
 
     /* Process steps (mirrors pricing.css mobile rules).
        .how-it-works .process-grid is repeated at full specificity here because

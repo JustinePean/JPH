@@ -22,10 +22,9 @@ const COMMON_ELEMENTS = {
                 <div class="nav-links">
                     <a href="index.html#about">About</a>
                     <a href="index.html#services">Services</a>
-                    <a href="index.html#before-after-section">Before/After</a>
-                    <a href="index.html#pricing-teaser">Pricing</a>
-                    <a href="index.html#faq">FAQ</a>
-                    <a href="index.html#contact">Contact</a>
+                    <a href="before-after.html">Before/After</a>
+                    <a href="pricing.html">Pricing</a>
+                    <a href="contact.html" class="nav-cta">Contact</a>
                 </div>
             </div>
         </nav>
@@ -33,8 +32,28 @@ const COMMON_ELEMENTS = {
     `,
 
     footer: `
-        <footer class="footer bg-alt reveal-on-scroll">
-            <p>&copy; 2026 Justine Pean Huyo-a. All rights reserved.</p>
+        <footer class="footer bg-alt">
+            <div class="footer-inner">
+                <div class="footer-cta">
+                    <h3>Ready to get started?</h3>
+                    <p>Let's make your photos shine.</p>
+                    <a href="contact.html" class="btn btn-primary">Get In Touch</a>
+                    <div class="footer-contact-links">
+                        <a href="mailto:justine@justinepeandh.com" class="contact-link" aria-label="Email">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/justine-pean-huyo-a-06b6441bb/" target="_blank" rel="noopener" class="contact-link" aria-label="LinkedIn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        </a>
+                        <a href="https://wa.me/+639912238610" target="_blank" rel="noopener" class="contact-link" aria-label="WhatsApp">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2026 Justine Pean Huyo-a. All rights reserved.</p>
+                </div>
+            </div>
         </footer>
     `,
 
