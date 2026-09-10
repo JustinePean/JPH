@@ -8,11 +8,26 @@ function getPagesWithModifiedNav() {
 
 /**
  * Checks if current page needs modified nav (remove About/Services, add Home).
+ * Returns true only for before-after.html, pricing.html, and contact.html.
  */
 function shouldModifyNav() {
     const pagesWithModifiedNav = getPagesWithModifiedNav();
-    const currentPath = window.location.pathname.split('/').pop();
-    return pagesWithModifiedNav.includes(currentPath);
+    let currentPath = window.location.pathname.split('/').pop();
+    
+    // Handle various homepage URL variations
+    // Sometimes pathname is '/', 'index.html', or empty
+    if (!currentPath || currentPath === 'index.html' || currentPath === '') {
+        console.log('shouldModifyNav: Homepage detected, returning false');
+        return false; // It's the homepage, don't modify
+    }
+    
+    const shouldModify = pagesWithModifiedNav.includes(currentPath);
+    console.log('shouldModifyNav:', {
+        currentPath: currentPath,
+        pagesWithModifiedNav: pagesWithModifiedNav,
+        shouldModify: shouldModify
+    });
+    return shouldModify;
 }
 
 /**
@@ -20,10 +35,16 @@ function shouldModifyNav() {
  * Removes About and Services links, adds Home link at the beginning.
  */
 function modifyNavForSpecificPages() {
-    if (!shouldModifyNav()) return;
+    console.log('modifyNavForSpecificPages called');
+    if (!shouldModifyNav()) {
+        console.log('modifyNavForSpecificPages: No modification needed');
+        return;
+    };
     
     const navLinks = document.querySelector('.nav-links');
     if (!navLinks) return;
+    
+    console.log('modifyNavForSpecificPages: Modifying nav links');
     
     // Remove About and Services links
     const aboutLink = navLinks.querySelector('a[href*="index.html#about"]');
