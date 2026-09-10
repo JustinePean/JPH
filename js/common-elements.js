@@ -1,4 +1,49 @@
 /**
+ * Determines if the current page should have a modified nav.
+ * Returns a comma-separated list of pages that need nav modification.
+ */
+function getPagesWithModifiedNav() {
+    return 'before-after.html,pricing.html,contact.html';
+}
+
+/**
+ * Checks if current page needs modified nav (remove About/Services, add Home).
+ */
+function shouldModifyNav() {
+    const pagesWithModifiedNav = getPagesWithModifiedNav();
+    const currentPath = window.location.pathname.split('/').pop();
+    return pagesWithModifiedNav.includes(currentPath);
+}
+
+/**
+ * Modifies nav links for specific pages (before-after, pricing, contact).
+ * Removes About and Services links, adds Home link at the beginning.
+ */
+function modifyNavForSpecificPages() {
+    if (!shouldModifyNav()) return;
+    
+    const navLinks = document.querySelector('.nav-links');
+    if (!navLinks) return;
+    
+    // Remove About and Services links
+    const aboutLink = navLinks.querySelector('a[href*="index.html#about"]');
+    const servicesLink = navLinks.querySelector('a[href*="index.html#services"]');
+    
+    if (aboutLink) {
+        aboutLink.remove();
+    }
+    if (servicesLink) {
+        servicesLink.remove();
+    }
+    
+    // Add Home link at the beginning
+    const homeLink = document.createElement('a');
+    homeLink.href = 'index.html';
+    homeLink.textContent = 'Home';
+    navLinks.insertBefore(homeLink, navLinks.firstChild);
+}
+
+/**
  * Common HTML elements loader
  *
  * Injects shared components (navbar, footer, back-to-top) into every page
@@ -107,6 +152,9 @@ function loadCommonElements() {
 
     // Adjust nav links for current page
     adjustNavLinks();
+    
+    // Modify nav for specific pages (before-after, pricing, contact)
+    modifyNavForSpecificPages();
 
     // Re-initialize any navbar-dependent scripts
     if (typeof window.reinitializeNavbar === 'function') {
